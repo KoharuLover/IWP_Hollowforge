@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] private Animator _animator;
+
     private PlayerStats _playerStats;
+    private Rigidbody2D _rb;
 
     private float _currentHealth;
     private bool _isDead;
@@ -14,6 +17,8 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         _playerStats = GetComponent<PlayerStats>();
+        _rb = GetComponent<Rigidbody2D>();
+        if (_animator == null) _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -59,11 +64,14 @@ public class PlayerHealth : MonoBehaviour
 
         Debug.Log("Player died");
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
-        if (rb != null)
+        if (_rb != null)
         {
-            rb.linearVelocity = Vector2.zero;
+            _rb.linearVelocity = Vector2.zero;
+        }
+
+        if (_animator != null)
+        {
+            _animator.SetBool("IsDead", true);
         }
     }
 }
