@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _movement;
 
     private PlayerStats _playerStats;
+    private PlayerHealth _playerHealth;
     private Rigidbody2D _rb;
     private Animator _animator;
 
@@ -18,10 +19,16 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _playerStats = GetComponent<PlayerStats>();
+        _playerHealth = GetComponent<PlayerHealth>();
     }
 
     private void Update()
     {
+        if (_playerHealth.IsDead)
+        {
+            _movement = Vector2.zero;
+            return;
+        }
         _movement.Set(InputManager.Movement.x, InputManager.Movement.y);
 
         _rb.linearVelocity = _movement * _playerStats.MovementSpeed;

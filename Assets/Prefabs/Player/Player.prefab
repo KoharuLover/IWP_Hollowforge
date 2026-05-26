@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6304780288273211981}
   - component: {fileID: 8634908871772816}
   - component: {fileID: 6506690889074469478}
+  - component: {fileID: 5178960910701075713}
   - component: {fileID: 5498108048459313097}
   m_Layer: 0
   m_Name: Player
@@ -223,6 +224,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1414f29b70d394695c2449511118e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBuffs
+--- !u!114 &5178960910701075713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115692924340689871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceec2d2b7e0b378448a6b647ca001cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
 --- !u!114 &5498108048459313097
 MonoBehaviour:
   m_ObjectHideFlags: 0
