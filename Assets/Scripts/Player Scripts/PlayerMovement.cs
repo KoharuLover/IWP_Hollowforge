@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 5f;
-
     private Vector2 _movement;
 
+    private PlayerStats _playerStats;
     private Rigidbody2D _rb;
     private Animator _animator;
 
@@ -18,13 +17,14 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _playerStats = GetComponent<PlayerStats>();
     }
 
     private void Update()
     {
         _movement.Set(InputManager.Movement.x, InputManager.Movement.y);
 
-        _rb.linearVelocity = _movement * _moveSpeed;
+        _rb.linearVelocity = _movement * _playerStats.MovementSpeed;
 
         _animator.SetFloat(_horizontal, _movement.x);
         _animator.SetFloat(_vertical, _movement.y);
