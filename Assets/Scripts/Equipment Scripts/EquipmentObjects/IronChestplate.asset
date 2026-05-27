@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData
   equipmentName: Iron Chestplate
   equipmentType: 1
+  armourSlotType: 2
   icon: {fileID: 0}
   cost: 1
-  starLevel: 1
   elementalTrait: 0
   classTrait: 1
   maxHealthBonus: 50

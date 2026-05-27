@@ -7,6 +7,15 @@ public enum EquipmentType
     Artifact
 }
 
+public enum ArmourSlotType
+{
+    None,
+    Helmet,
+    Chestplate,
+    Pants,
+    Boots
+}
+
 public enum ElementalTrait
 {
     None,
@@ -29,11 +38,11 @@ public class EquipmentData : ScriptableObject
     [Header("Basic Info")]
     public string equipmentName;
     public EquipmentType equipmentType;
+    public ArmourSlotType armourSlotType;
     public Sprite icon;
 
     [Header("Cost / Rarity")]
     public int cost = 1;
-    public int starLevel = 1;
 
     [Header("Traits")]
     public ElementalTrait elementalTrait;
