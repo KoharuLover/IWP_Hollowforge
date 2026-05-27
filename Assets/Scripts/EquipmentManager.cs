@@ -73,7 +73,7 @@ public class EquipmentManager : MonoBehaviour
             return false;
         }
 
-        if (weaponSlot1 == null)
+        if (IsSlotEmpty(weaponSlot1))
         {
             weaponSlot1 = equipment;
             InventoryManager.Instance.RemoveFromInventory(equipment);
@@ -81,7 +81,7 @@ public class EquipmentManager : MonoBehaviour
             return true;
         }
 
-        if (weaponSlot2 == null)
+        if (IsSlotEmpty(weaponSlot2))
         {
             weaponSlot2 = equipment;
             InventoryManager.Instance.RemoveFromInventory(equipment);
@@ -120,7 +120,7 @@ public class EquipmentManager : MonoBehaviour
 
     private bool EquipArmourToSlot(ref EquipmentInstance armourSlot, EquipmentInstance equipment)
     {
-        if (armourSlot != null)
+        if (IsSlotEmpty(armourSlot) == false)
         {
             Debug.Log("That armour slot is already occupied.");
             return false;
@@ -136,7 +136,7 @@ public class EquipmentManager : MonoBehaviour
     {
         for (int i = 0; i < artifactSlots.Length; i++)
         {
-            if (artifactSlots[i] == null)
+            if (IsSlotEmpty(artifactSlots[i]))
             {
                 artifactSlots[i] = equipment;
                 InventoryManager.Instance.RemoveFromInventory(equipment);
@@ -151,16 +151,21 @@ public class EquipmentManager : MonoBehaviour
 
     private bool IsSameWeaponAlreadyEquipped(EquipmentInstance equipment)
     {
-        if (weaponSlot1 != null && weaponSlot1.equipmentData == equipment.equipmentData)
+        if (IsSlotEmpty(weaponSlot1) == false && weaponSlot1.equipmentData == equipment.equipmentData)
         {
             return true;
         }
 
-        if (weaponSlot2 != null && weaponSlot2.equipmentData == equipment.equipmentData)
+        if (IsSlotEmpty(weaponSlot2) == false && weaponSlot2.equipmentData == equipment.equipmentData)
         {
             return true;
         }
 
         return false;
+    }
+
+    private bool IsSlotEmpty(EquipmentInstance slot)
+    {
+        return slot == null || slot.equipmentData == null;
     }
 }

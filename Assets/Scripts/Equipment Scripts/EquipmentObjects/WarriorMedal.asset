@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData
   equipmentName: Warrior Medal
   equipmentType: 2
+  armourSlotType: 0
   icon: {fileID: 0}
   cost: 1
-  starLevel: 1
   elementalTrait: 0
-  classTrait: 0
+  classTrait: 1
   maxHealthBonus: 20
   maxManaBonus: 0
   attackBonus: 20
