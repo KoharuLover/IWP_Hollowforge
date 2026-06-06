@@ -8,6 +8,7 @@ public class EquipmentManager : MonoBehaviour
     [SerializeField] private EquipmentInstance weaponSlot1;
     [SerializeField] private EquipmentInstance weaponSlot2;
     [SerializeField] private int activeWeaponSlotIndex = 0;
+    public int ActiveWeaponSlotIndex => activeWeaponSlotIndex;
 
     [Header("Armour Slots")]
     [SerializeField] private EquipmentInstance helmetSlot;

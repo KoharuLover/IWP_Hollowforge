@@ -23,7 +23,7 @@ MonoBehaviour:
   aoeCastType: 1
   weaponDamage: 2
   attackRange: 0
-  attackRadius: 0.5
+  attackRadius: 0.3
   attackCooldown: 10
   projectileSpeed: 0
   aoeDuration: 5

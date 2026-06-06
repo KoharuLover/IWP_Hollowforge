@@ -12,7 +12,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerHealth _playerHealth;
     private Camera _mainCamera;
 
-    private float _nextAttackTime;
+    private float[] _nextAttackTimes = new float[2];
 
     private void Awake()
     {
@@ -117,14 +117,22 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
 
-        if (Time.time < _nextAttackTime)
+        int activeWeaponSlotIndex = EquipmentManager.Instance.ActiveWeaponSlotIndex;
+
+        if (activeWeaponSlotIndex < 0 || activeWeaponSlotIndex >= _nextAttackTimes.Length)
+        {
+            Debug.LogWarning("Invalid active weapon slot index.");
+            return;
+        }
+
+        if (Time.time < _nextAttackTimes[activeWeaponSlotIndex])
         {
             return;
         }
 
         Attack(weapon);
 
-        _nextAttackTime = Time.time + weapon.attackCooldown / _playerStats.AttackSpeed;
+        _nextAttackTimes[activeWeaponSlotIndex] = Time.time + weapon.attackCooldown / _playerStats.AttackSpeed;
     }
 
     private void Attack(EquipmentData weapon)
