@@ -26,16 +26,40 @@ public class PlayerAttack : MonoBehaviour
         }
 
         UpdateAttackPointDirection();
+        HandleWeaponSwitchInput();
 
-        if (Input.GetMouseButtonDown(0))
+        if (InputManager.AttackPressed)
         {
             TryAttack();
+        }
+    }
+
+    private void HandleWeaponSwitchInput()
+    {
+        if (EquipmentManager.Instance == null)
+        {
+            return;
+        }
+
+        if (InputManager.WeaponSlot1Pressed)
+        {
+            EquipmentManager.Instance.SetActiveWeaponSlot(0);
+        }
+
+        if (InputManager.WeaponSlot2Pressed)
+        {
+            EquipmentManager.Instance.SetActiveWeaponSlot(1);
         }
     }
 
     private void UpdateAttackPointDirection()
     {
         if (_attackPoint == null || _mainCamera == null)
+        {
+            return;
+        }
+
+        if (EquipmentManager.Instance == null)
         {
             return;
         }
@@ -49,10 +73,16 @@ public class PlayerAttack : MonoBehaviour
             attackRange = weapon.attackRange;
         }
 
-        Vector3 mouseScreenPosition = Input.mousePosition;
+        Vector3 mouseScreenPosition = InputManager.MousePosition;
         Vector3 mouseWorldPosition = _mainCamera.ScreenToWorldPoint(mouseScreenPosition);
 
         Vector2 attackDirection = mouseWorldPosition - transform.position;
+
+        if (attackDirection == Vector2.zero)
+        {
+            return;
+        }
+
         attackDirection.Normalize();
 
         _attackPoint.localPosition = attackDirection * attackRange;
@@ -63,6 +93,12 @@ public class PlayerAttack : MonoBehaviour
 
     private void TryAttack()
     {
+        if (EquipmentManager.Instance == null)
+        {
+            Debug.LogWarning("No EquipmentManager found.");
+            return;
+        }
+
         EquipmentData weapon = EquipmentManager.Instance.ActiveWeaponData;
 
         if (weapon == null)
@@ -131,27 +167,29 @@ public class PlayerAttack : MonoBehaviour
         );
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if (_attackPoint == null)
         {
             return;
         }
 
-        EquipmentData weapon = null;
+        float attackRadius = 0.5f;
 
-        if (EquipmentManager.Instance != null)
+        if (Application.isPlaying && EquipmentManager.Instance != null)
         {
-            weapon = EquipmentManager.Instance.ActiveWeaponData;
+            EquipmentData weapon = EquipmentManager.Instance.ActiveWeaponData;
+
+            if (weapon != null)
+            {
+                attackRadius = weapon.attackRadius;
+            }
         }
 
-        float radius = 0.5f;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_attackPoint.position, attackRadius);
 
-        if (weapon != null)
-        {
-            radius = weapon.attackRadius;
-        }
-
-        Gizmos.DrawWireSphere(_attackPoint.position, radius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, _attackPoint.position);
     }
 }

@@ -22,12 +22,12 @@ MonoBehaviour:
   weaponAttackType: 1
   weaponDamage: 10
   attackRange: 0.2
-  attackRadius: 0.5
+  attackRadius: 0.28
   attackVFXPrefab: {fileID: 8919160821038387526, guid: 4580b88a57a5079489a801ce85273fab, type: 3}
   projectilePrefab: {fileID: 0}
   maxHealthBonus: 0
   maxManaBonus: 0
-  attackBonus: 10
+  attackBonus: 0
   attackSpeedBonus: 0
   magicPowerBonus: 0
   movementSpeedBonus: 0
