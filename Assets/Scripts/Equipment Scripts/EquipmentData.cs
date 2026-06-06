@@ -63,8 +63,10 @@ public class EquipmentData : ScriptableObject
     public float weaponDamage = 10f;
     public float attackRange = 0.8f;
     public float attackRadius = 0.5f;
+    public float projectileSpeed = 1f;
     public GameObject attackVFXPrefab;
     public GameObject projectilePrefab;
+    public GameObject impactVFXPrefab;
 
     [Header("Stat Bonuses")]
     public float maxHealthBonus;

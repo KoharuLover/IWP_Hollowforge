@@ -113,20 +113,30 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
 
-        if (weapon.weaponAttackType != WeaponAttackType.Melee)
-        {
-            Debug.Log("This weapon is not melee yet.");
-            return;
-        }
-
         if (Time.time < _nextAttackTime)
         {
             return;
         }
 
-        MeleeAttack(weapon);
+        Attack(weapon);
 
         _nextAttackTime = Time.time + 1f / _playerStats.AttackSpeed;
+    }
+
+    private void Attack(EquipmentData weapon)
+    {
+        if (weapon.weaponAttackType == WeaponAttackType.Melee)
+        {
+            MeleeAttack(weapon);
+        }
+        else if (weapon.weaponAttackType == WeaponAttackType.Ranged)
+        {
+            RangedAttack(weapon);
+        }
+        else
+        {
+            Debug.Log("This weapon attack type is not supported yet.");
+        }
     }
 
     private void MeleeAttack(EquipmentData weapon)
@@ -150,7 +160,42 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        Debug.Log("Attacked with " + weapon.equipmentName);
+        Debug.Log("Melee attack with " + weapon.equipmentName);
+    }
+
+    private void RangedAttack(EquipmentData weapon)
+    {
+        SpawnAttackVFX(weapon);
+
+        if (weapon.projectilePrefab == null)
+        {
+            Debug.LogWarning(weapon.equipmentName + " has no projectile prefab.");
+            return;
+        }
+
+        GameObject projectileObject = Instantiate(
+            weapon.projectilePrefab,
+            _attackPoint.position,
+            _attackPoint.rotation
+        );
+
+        PlayerProjectile projectile = projectileObject.GetComponent<PlayerProjectile>();
+
+        if (projectile != null)
+        {
+            float totalDamage = weapon.weaponDamage + _playerStats.Attack;
+            Vector2 direction = _attackPoint.right;
+
+            projectile.Setup(
+                totalDamage,
+                weapon.elementType,
+                direction,
+                weapon.projectileSpeed,
+                weapon.impactVFXPrefab
+            );
+        }
+
+        Debug.Log("Ranged attack with " + weapon.equipmentName);
     }
 
     private void SpawnAttackVFX(EquipmentData weapon)
