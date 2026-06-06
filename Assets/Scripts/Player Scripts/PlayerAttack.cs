@@ -220,6 +220,10 @@ public class PlayerAttack : MonoBehaviour
         {
             AroundPlayerAOEAttack(weapon);
         }
+        else if (weapon.aoeCastType == AOECastType.AtMousePosition)
+        {
+            MousePositionAOEAttack(weapon);
+        }
         else
         {
             Debug.Log("This AOE cast type is not supported yet.");
@@ -262,6 +266,57 @@ public class PlayerAttack : MonoBehaviour
         );
 
         Debug.Log("Around player AOE attack with " + weapon.equipmentName);
+    }
+
+    private void MousePositionAOEAttack(EquipmentData weapon)
+    {
+        Vector3 aoePosition = GetMouseAOEPosition(weapon);
+
+        if (weapon.attackVFXPrefab != null)
+        {
+            Instantiate(
+                weapon.attackVFXPrefab,
+                aoePosition,
+                Quaternion.identity
+            );
+        }
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
+            aoePosition,
+            weapon.attackRadius,
+            _enemyLayer
+        );
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            EnemyHealth enemyHealth = enemy.GetComponentInParent<EnemyHealth>();
+
+            if (enemyHealth != null)
+            {
+                float totalDamage = weapon.weaponDamage + _playerStats.MagicPower;
+                enemyHealth.TakeDamage(totalDamage, weapon.elementType);
+            }
+        }
+
+        Debug.Log("Mouse position AOE attack with " + weapon.equipmentName);
+    }
+
+    private Vector3 GetMouseAOEPosition(EquipmentData weapon)
+    {
+        Vector3 mouseScreenPosition = InputManager.MousePosition;
+        Vector3 mouseWorldPosition = _mainCamera.ScreenToWorldPoint(mouseScreenPosition);
+        mouseWorldPosition.z = 0f;
+
+        Vector3 playerPosition = transform.position;
+        Vector3 directionToMouse = mouseWorldPosition - playerPosition;
+
+        if (directionToMouse.magnitude > weapon.attackRange)
+        {
+            directionToMouse = directionToMouse.normalized * weapon.attackRange;
+            mouseWorldPosition = playerPosition + directionToMouse;
+        }
+
+        return mouseWorldPosition;
     }
 
     private void SpawnAttackVFX(EquipmentData weapon)

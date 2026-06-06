@@ -75,7 +75,7 @@ public class EquipmentData : ScriptableObject
     public float attackCooldown = 1f;
     public float projectileSpeed = 1f;
 
-    [Header("AOE Settings")]
+    [Header("AOE Aura Settings")]
     public float aoeDuration = 3f;
     public float aoeTickInterval = 0.5f;
 
