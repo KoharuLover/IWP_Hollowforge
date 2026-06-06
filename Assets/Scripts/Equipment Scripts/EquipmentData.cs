@@ -42,6 +42,13 @@ public enum WeaponAttackType
     AOE
 }
 
+public enum AOECastType
+{
+    None,
+    AroundPlayer,
+    AtMousePosition
+}
+
 [CreateAssetMenu(fileName = "New Equipment", menuName = "Hollowforge/Equipment")]
 public class EquipmentData : ScriptableObject
 {
@@ -60,10 +67,19 @@ public class EquipmentData : ScriptableObject
 
     [Header("Weapon Settings")]
     public WeaponAttackType weaponAttackType;
+    public AOECastType aoeCastType = AOECastType.None;
+
     public float weaponDamage = 10f;
     public float attackRange = 0.8f;
     public float attackRadius = 0.5f;
+    public float attackCooldown = 1f;
     public float projectileSpeed = 1f;
+
+    [Header("AOE Settings")]
+    public float aoeDuration = 3f;
+    public float aoeTickInterval = 0.5f;
+
+    [Header("VFX")]
     public GameObject attackVFXPrefab;
     public GameObject projectilePrefab;
     public GameObject impactVFXPrefab;

@@ -5,6 +5,9 @@ public class PlayerAttack : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform _attackPoint;
 
+    [Header("Layers")]
+    [SerializeField] private LayerMask _enemyLayer;
+
     private PlayerStats _playerStats;
     private PlayerHealth _playerHealth;
     private Camera _mainCamera;
@@ -75,6 +78,7 @@ public class PlayerAttack : MonoBehaviour
 
         Vector3 mouseScreenPosition = InputManager.MousePosition;
         Vector3 mouseWorldPosition = _mainCamera.ScreenToWorldPoint(mouseScreenPosition);
+        mouseWorldPosition.z = 0f;
 
         Vector2 attackDirection = mouseWorldPosition - transform.position;
 
@@ -120,7 +124,7 @@ public class PlayerAttack : MonoBehaviour
 
         Attack(weapon);
 
-        _nextAttackTime = Time.time + 1f / _playerStats.AttackSpeed;
+        _nextAttackTime = Time.time + weapon.attackCooldown / _playerStats.AttackSpeed;
     }
 
     private void Attack(EquipmentData weapon)
@@ -132,6 +136,10 @@ public class PlayerAttack : MonoBehaviour
         else if (weapon.weaponAttackType == WeaponAttackType.Ranged)
         {
             RangedAttack(weapon);
+        }
+        else if (weapon.weaponAttackType == WeaponAttackType.AOE)
+        {
+            AOEAttack(weapon);
         }
         else
         {
@@ -146,12 +154,12 @@ public class PlayerAttack : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             _attackPoint.position,
             weapon.attackRadius,
-            LayerMask.GetMask("Enemy")
+            _enemyLayer
         );
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth = enemy.GetComponentInParent<EnemyHealth>();
 
             if (enemyHealth != null)
             {
@@ -196,6 +204,56 @@ public class PlayerAttack : MonoBehaviour
         }
 
         Debug.Log("Ranged attack with " + weapon.equipmentName);
+    }
+
+    private void AOEAttack(EquipmentData weapon)
+    {
+        if (weapon.aoeCastType == AOECastType.AroundPlayer)
+        {
+            AroundPlayerAOEAttack(weapon);
+        }
+        else
+        {
+            Debug.Log("This AOE cast type is not supported yet.");
+        }
+    }
+
+    private void AroundPlayerAOEAttack(EquipmentData weapon)
+    {
+        if (weapon.attackVFXPrefab == null)
+        {
+            Debug.LogWarning(weapon.equipmentName + " has no AOE VFX prefab.");
+            return;
+        }
+
+        GameObject aoeObject = Instantiate(
+            weapon.attackVFXPrefab,
+            transform.position,
+            Quaternion.identity
+        );
+
+        AOEDamageZone aoeDamageZone = aoeObject.GetComponent<AOEDamageZone>();
+
+        if (aoeDamageZone == null)
+        {
+            Debug.LogWarning("AOE prefab does not have AOEDamageZone script.");
+            return;
+        }
+
+        float totalDamage = weapon.weaponDamage + _playerStats.MagicPower;
+
+        aoeDamageZone.Setup(
+            transform,
+            totalDamage,
+            weapon.attackRadius,
+            weapon.aoeDuration,
+            weapon.aoeTickInterval,
+            weapon.elementType,
+            _enemyLayer,
+            true
+        );
+
+        Debug.Log("Around player AOE attack with " + weapon.equipmentName);
     }
 
     private void SpawnAttackVFX(EquipmentData weapon)
