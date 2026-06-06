@@ -7,6 +7,7 @@ public class EquipmentManager : MonoBehaviour
     [Header("Weapon Slots")]
     [SerializeField] private EquipmentInstance weaponSlot1;
     [SerializeField] private EquipmentInstance weaponSlot2;
+    [SerializeField] private int activeWeaponSlotIndex = 0;
 
     [Header("Armour Slots")]
     [SerializeField] private EquipmentInstance helmetSlot;
@@ -39,6 +40,7 @@ public class EquipmentManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    // ----------------------------------- EQUIPPING FUNC ----------------------------------- //
     public bool EquipItem(EquipmentInstance equipment)
     {
         if (equipment == null || equipment.equipmentData == null)
@@ -167,5 +169,55 @@ public class EquipmentManager : MonoBehaviour
     private bool IsSlotEmpty(EquipmentInstance slot)
     {
         return slot == null || slot.equipmentData == null;
+    }
+
+
+
+    // ----------------------------------- WEAPON FUNC ----------------------------------- //
+
+    public EquipmentInstance ActiveWeapon
+    {
+        get
+        {
+            if (activeWeaponSlotIndex == 0)
+            {
+                return weaponSlot1;
+            }
+
+            return weaponSlot2;
+        }
+    }
+
+    public EquipmentData ActiveWeaponData
+    {
+        get
+        {
+            if (ActiveWeapon == null)
+            {
+                return null;
+            }
+
+            return ActiveWeapon.equipmentData;
+        }
+    }
+
+    public void SetActiveWeaponSlot(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex > 1)
+        {
+            Debug.LogWarning("Invalid weapon slot index.");
+            return;
+        }
+
+        activeWeaponSlotIndex = slotIndex;
+
+        if (ActiveWeaponData != null)
+        {
+            Debug.Log("Active weapon changed to: " + ActiveWeaponData.equipmentName);
+        }
+        else
+        {
+            Debug.Log("Active weapon slot is empty.");
+        }
     }
 }

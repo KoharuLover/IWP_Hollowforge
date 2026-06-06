@@ -16,20 +16,30 @@ public enum ArmourSlotType
     Boots
 }
 
-public enum ElementalTrait
+public enum ElementType
 {
     None,
     Physical,
     Fire,
-    Lightning
+    Ice,
+    Lightning,
+    Dark,
 }
 
-public enum ClassTrait
+public enum ClassType
 {
     None,
     Warrior,
     Mage,
     Assassin
+}
+
+public enum WeaponAttackType
+{
+    None,
+    Melee,
+    Ranged,
+    AOE
 }
 
 [CreateAssetMenu(fileName = "New Equipment", menuName = "Hollowforge/Equipment")]
@@ -45,8 +55,16 @@ public class EquipmentData : ScriptableObject
     public int cost = 1;
 
     [Header("Traits")]
-    public ElementalTrait elementalTrait;
-    public ClassTrait classTrait;
+    public ElementType elementType;
+    public ClassType classType;
+
+    [Header("Weapon Settings")]
+    public WeaponAttackType weaponAttackType;
+    public float weaponDamage = 10f;
+    public float attackRange = 0.8f;
+    public float attackRadius = 0.5f;
+    public GameObject attackVFXPrefab;
+    public GameObject projectilePrefab;
 
     [Header("Stat Bonuses")]
     public float maxHealthBonus;

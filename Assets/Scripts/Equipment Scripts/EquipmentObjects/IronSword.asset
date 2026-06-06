@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData
   equipmentName: Iron Sword
   equipmentType: 0
+  armourSlotType: 0
   icon: {fileID: 0}
   cost: 1
-  starLevel: 1
-  elementalTrait: 1
-  classTrait: 1
+  elementType: 1
+  classType: 1
+  weaponAttackType: 1
+  weaponDamage: 10
+  attackRange: 0.2
+  attackRadius: 0.5
+  attackVFXPrefab: {fileID: 8919160821038387526, guid: 4580b88a57a5079489a801ce85273fab, type: 3}
+  projectilePrefab: {fileID: 0}
   maxHealthBonus: 0
   maxManaBonus: 0
   attackBonus: 10

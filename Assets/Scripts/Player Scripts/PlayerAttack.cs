@@ -2,12 +2,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [Header("Attack VFX")]
-    [SerializeField] private GameObject _attackVFXPrefab;
+    [Header("References")]
     [SerializeField] private Transform _attackPoint;
-
-    [Header("Attack Settings")]
-    [SerializeField] private float _attackDistance = 0.6f;
 
     private PlayerStats _playerStats;
     private PlayerHealth _playerHealth;
@@ -39,13 +35,27 @@ public class PlayerAttack : MonoBehaviour
 
     private void UpdateAttackPointDirection()
     {
+        if (_attackPoint == null || _mainCamera == null)
+        {
+            return;
+        }
+
+        EquipmentData weapon = EquipmentManager.Instance.ActiveWeaponData;
+
+        float attackRange = 0.8f;
+
+        if (weapon != null)
+        {
+            attackRange = weapon.attackRange;
+        }
+
         Vector3 mouseScreenPosition = Input.mousePosition;
         Vector3 mouseWorldPosition = _mainCamera.ScreenToWorldPoint(mouseScreenPosition);
 
         Vector2 attackDirection = mouseWorldPosition - transform.position;
         attackDirection.Normalize();
 
-        _attackPoint.localPosition = attackDirection * _attackDistance;
+        _attackPoint.localPosition = attackDirection * attackRange;
 
         float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
         _attackPoint.rotation = Quaternion.Euler(0f, 0f, angle);
@@ -53,23 +63,95 @@ public class PlayerAttack : MonoBehaviour
 
     private void TryAttack()
     {
+        EquipmentData weapon = EquipmentManager.Instance.ActiveWeaponData;
+
+        if (weapon == null)
+        {
+            Debug.Log("No active weapon equipped.");
+            return;
+        }
+
+        if (weapon.equipmentType != EquipmentType.Weapon)
+        {
+            Debug.Log("Active equipment is not a weapon.");
+            return;
+        }
+
+        if (weapon.weaponAttackType != WeaponAttackType.Melee)
+        {
+            Debug.Log("This weapon is not melee yet.");
+            return;
+        }
+
         if (Time.time < _nextAttackTime)
         {
             return;
         }
 
-        Attack();
+        MeleeAttack(weapon);
 
         _nextAttackTime = Time.time + 1f / _playerStats.AttackSpeed;
     }
 
-    private void Attack()
+    private void MeleeAttack(EquipmentData weapon)
     {
-        Debug.Log("Player attacked");
+        SpawnAttackVFX(weapon);
 
-        if (_attackVFXPrefab != null && _attackPoint != null)
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
+            _attackPoint.position,
+            weapon.attackRadius,
+            LayerMask.GetMask("Enemy")
+        );
+
+        foreach (Collider2D enemy in hitEnemies)
         {
-            Instantiate(_attackVFXPrefab, _attackPoint.position, _attackPoint.rotation);
+            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+
+            if (enemyHealth != null)
+            {
+                float totalDamage = weapon.weaponDamage + _playerStats.Attack;
+                enemyHealth.TakeDamage(totalDamage, weapon.elementType);
+            }
         }
+
+        Debug.Log("Attacked with " + weapon.equipmentName);
+    }
+
+    private void SpawnAttackVFX(EquipmentData weapon)
+    {
+        if (weapon.attackVFXPrefab == null || _attackPoint == null)
+        {
+            return;
+        }
+
+        Instantiate(
+            weapon.attackVFXPrefab,
+            _attackPoint.position,
+            _attackPoint.rotation
+        );
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (_attackPoint == null)
+        {
+            return;
+        }
+
+        EquipmentData weapon = null;
+
+        if (EquipmentManager.Instance != null)
+        {
+            weapon = EquipmentManager.Instance.ActiveWeaponData;
+        }
+
+        float radius = 0.5f;
+
+        if (weapon != null)
+        {
+            radius = weapon.attackRadius;
+        }
+
+        Gizmos.DrawWireSphere(_attackPoint.position, radius);
     }
 }

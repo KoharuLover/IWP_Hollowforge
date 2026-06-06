@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1913608183594428883}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0, z: 0}
+  m_LocalPosition: {x: 0.15, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -294,5 +294,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71037d3d2f1424749be63768482fc9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
-  _attackVFXPrefab: {fileID: 8919160821038387526, guid: 4580b88a57a5079489a801ce85273fab, type: 3}
   _attackPoint: {fileID: 4212802039165431655}

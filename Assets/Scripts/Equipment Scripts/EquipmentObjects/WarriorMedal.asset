@@ -17,8 +17,14 @@ MonoBehaviour:
   armourSlotType: 0
   icon: {fileID: 0}
   cost: 1
-  elementalTrait: 0
-  classTrait: 1
+  elementType: 0
+  classType: 1
+  weaponAttackType: 0
+  weaponDamage: 0
+  attackRange: 0
+  attackRadius: 0
+  attackVFXPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 0}
   maxHealthBonus: 20
   maxManaBonus: 0
   attackBonus: 20
