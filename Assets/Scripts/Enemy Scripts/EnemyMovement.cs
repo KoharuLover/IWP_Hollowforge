@@ -6,6 +6,8 @@ public class EnemyMovement : MonoBehaviour
     private EnemyHealth _enemyHealth;
     private EnemyAI _enemyAI;
     private Rigidbody2D _rb;
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
 
     private Transform _player;
     private PlayerHealth _playerHealth;
@@ -26,6 +28,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _separationWeight = 0.25f;
     [SerializeField] private LayerMask _enemyLayer;
 
+    private const string IsMoving = "IsMoving";
+
     private Vector2 _currentMoveDirection;
     private Vector2 _currentTargetPosition;
     private float _nextSpotRefreshTime;
@@ -36,6 +40,8 @@ public class EnemyMovement : MonoBehaviour
         _enemyHealth = GetComponent<EnemyHealth>();
         _enemyAI = GetComponent<EnemyAI>();
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -134,6 +140,9 @@ public class EnemyMovement : MonoBehaviour
         );
 
         _rb.linearVelocity = _currentMoveDirection * _enemyStats.MovementSpeed;
+
+        UpdateMovementAnimation(_currentMoveDirection);
+        FacePlayer();
     }
 
     private Vector2 GetBestVacantSpotNearPlayer()
@@ -226,10 +235,42 @@ public class EnemyMovement : MonoBehaviour
         return separationDirection;
     }
 
+    private void UpdateMovementAnimation(Vector2 moveDirection)
+    {
+        if (_animator == null)
+        {
+            return;
+        }
+
+        bool isMoving = moveDirection.sqrMagnitude > 0.01f;
+        _animator.SetBool(IsMoving, isMoving);
+    }
+
+    private void FacePlayer()
+    {
+        if (_spriteRenderer == null || _player == null)
+        {
+            return;
+        }
+
+        float directionToPlayerX = _player.position.x - transform.position.x;
+
+        if (directionToPlayerX > 0.05f)
+        {
+            _spriteRenderer.flipX = false;
+        }
+        else if (directionToPlayerX < -0.05f)
+        {
+            _spriteRenderer.flipX = true;
+        }
+    }
+
     private void StopMoving()
     {
         _rb.linearVelocity = Vector2.zero;
         _currentMoveDirection = Vector2.zero;
+
+        UpdateMovementAnimation(Vector2.zero);
     }
 
     private void OnDrawGizmosSelected()

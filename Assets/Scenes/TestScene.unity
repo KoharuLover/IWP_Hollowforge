@@ -12081,17 +12081,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: 0, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.35, y: 0.435}
     oldSize: {x: 0.43, y: 0.37}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.25, y: 0.25}
+  m_Size: {x: 0.25, y: 0.1}
   m_EdgeRadius: 0
 --- !u!212 &1251114199
 SpriteRenderer:
@@ -12161,7 +12161,7 @@ Transform:
   m_GameObject: {fileID: 1251114195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.615, y: 0, z: 0}
+  m_LocalPosition: {x: 1.757, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12185,7 +12185,7 @@ MonoBehaviour:
   _surroundRadius: 0.25
   _spotCheckCount: 6
   _spotOccupiedRadius: 0.2
-  _spotRefreshInterval: 1
+  _spotRefreshInterval: 0.5
   _separationRadius: 0.3
   _separationWeight: 0.25
   _enemyLayer:
@@ -12244,8 +12244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c83bb2ebcce0714aa6dff4ceb09505f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  _attackWindupTime: 0.15
-  _attackRange: 0.45
+  _attackRange: 0.25
 --- !u!95 &1251114205
 Animator:
   serializedVersion: 7

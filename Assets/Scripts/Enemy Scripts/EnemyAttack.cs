@@ -6,22 +6,27 @@ public class EnemyAttack : MonoBehaviour
     private EnemyStats _enemyStats;
     private EnemyHealth _enemyHealth;
     private EnemyAI _enemyAI;
+    private Animator _animator;
 
     private Transform _player;
     private PlayerHealth _playerHealth;
 
     [Header("Attack Settings")]
-    [SerializeField] private float _attackWindupTime = 0.5f;
     [SerializeField] private float _attackRange = 0.45f;
 
+    private const string IsAttackingParameter = "IsAttacking";
+
     private float _nextAttackTime;
-    private bool _isWindingUp;
+    private bool _isAttacking;
+
+    public bool IsAttacking => _isAttacking;
 
     private void Awake()
     {
         _enemyStats = GetComponent<EnemyStats>();
         _enemyHealth = GetComponent<EnemyHealth>();
         _enemyAI = GetComponent<EnemyAI>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -62,7 +67,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void TryStartAttack()
     {
-        if (_isWindingUp)
+        if (_isAttacking)
         {
             return;
         }
@@ -72,16 +77,28 @@ public class EnemyAttack : MonoBehaviour
             return;
         }
 
-        StartCoroutine(AttackWindupRoutine());
+        StartAttack();
     }
 
-    private IEnumerator AttackWindupRoutine()
+    private void StartAttack()
     {
-        _isWindingUp = true;
+        _isAttacking = true;
 
-        Debug.Log(gameObject.name + " is preparing to attack.");
+        if (_animator != null)
+        {
+            _animator.SetBool(IsAttackingParameter, true);
+        }
 
-        yield return new WaitForSeconds(_attackWindupTime);
+        Debug.Log(gameObject.name + " started attack animation.");
+    }
+
+    // Animation Event Start
+    public void DealAttackDamage()
+    {
+        if (_isAttacking == false)
+        {
+            return;
+        }
 
         if (CanStillHitPlayer())
         {
@@ -92,9 +109,21 @@ public class EnemyAttack : MonoBehaviour
         {
             Debug.Log(gameObject.name + " missed.");
         }
+    }
+
+    // Animation Event End
+    public void FinishAttack()
+    {
+        _isAttacking = false;
+
+        if (_animator != null)
+        {
+            _animator.SetBool(IsAttackingParameter, false);
+        }
 
         _nextAttackTime = Time.time + 1f / _enemyStats.AttackSpeed;
-        _isWindingUp = false;
+
+        Debug.Log(gameObject.name + " finished attack.");
     }
 
     private bool CanStillHitPlayer()
