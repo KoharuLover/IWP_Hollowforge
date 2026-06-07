@@ -4,19 +4,20 @@ public class EnemyMovement : MonoBehaviour
 {
     private EnemyStats _enemyStats;
     private EnemyHealth _enemyHealth;
+    private EnemyAI _enemyAI;
     private Rigidbody2D _rb;
 
     private Transform _player;
     private PlayerHealth _playerHealth;
 
     [Header("Movement Settings")]
-    [SerializeField] private float _stopDistance = 1.2f;
+    [SerializeField] private float _stopDistance = 0.5f;
     [SerializeField] private float _directionSmoothSpeed = 8f;
 
-    [Header("Soft Surround Settings")]
-    [SerializeField] private float _surroundStartDistance = 2f;
-    [SerializeField] private float _surroundRadius = 0.8f;
-    [SerializeField] private int _spotCheckCount = 12;
+    [Header("Surround Settings")]
+    [SerializeField] private float _surroundStartDistance = 1f;
+    [SerializeField] private float _surroundRadius = 0.5f;
+    [SerializeField] private int _spotCheckCount = 8;
     [SerializeField] private float _spotOccupiedRadius = 0.35f;
     [SerializeField] private float _spotRefreshInterval = 1f;
 
@@ -33,6 +34,7 @@ public class EnemyMovement : MonoBehaviour
     {
         _enemyStats = GetComponent<EnemyStats>();
         _enemyHealth = GetComponent<EnemyHealth>();
+        _enemyAI = GetComponent<EnemyAI>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -64,6 +66,12 @@ public class EnemyMovement : MonoBehaviour
         }
 
         if (_playerHealth.IsDead)
+        {
+            StopMoving();
+            return;
+        }
+
+        if (_enemyAI.CurrentState != EnemyState.Chase)
         {
             StopMoving();
             return;
