@@ -1617,8 +1617,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryTester
   testWeapon: {fileID: 11400000, guid: dd7246c5f79f444498312e26fc938583, type: 2}
-  testArmor: {fileID: 11400000, guid: 8eff23941383dae4ba9db235469d50db, type: 2}
-  testArtifact: {fileID: 11400000, guid: 21000fddb9202a9428b0186391895164, type: 2}
+  testArmor: {fileID: 11400000, guid: 4ff0f7c68589d1b489703991c94ada80, type: 2}
+  testArtifact: {fileID: 11400000, guid: 8a8cd679f7649b9429317315aaa74d0d, type: 2}
 --- !u!4 &839892665
 Transform:
   m_ObjectHideFlags: 0

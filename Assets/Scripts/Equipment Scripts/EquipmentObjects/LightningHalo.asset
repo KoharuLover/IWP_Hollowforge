@@ -35,7 +35,7 @@ MonoBehaviour:
   maxManaBonus: 0
   attackBonus: 0
   attackSpeedBonus: 0
-  magicPowerBonus: 0
-  movementSpeedBonus: 0
+  magicPowerBonus: 100
+  movementSpeedBonus: 0.5
   dashRangeBonus: 0
   description: 

@@ -171,7 +171,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (enemyHealth != null)
             {
-                float totalDamage = weapon.weaponDamage + _playerStats.Attack;
+                float totalDamage = GetTotalDamage(weapon);
                 enemyHealth.TakeDamage(totalDamage, weapon.elementType);
             }
         }
@@ -199,7 +199,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (projectile != null)
         {
-            float totalDamage = weapon.weaponDamage + _playerStats.Attack;
+            float totalDamage = GetTotalDamage(weapon);
             Vector2 direction = _attackPoint.right;
 
             projectile.Setup(
@@ -252,7 +252,7 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
 
-        float totalDamage = weapon.weaponDamage + _playerStats.MagicPower;
+        float totalDamage = GetTotalDamage(weapon);
 
         aoeDamageZone.Setup(
             transform,
@@ -293,12 +293,22 @@ public class PlayerAttack : MonoBehaviour
 
             if (enemyHealth != null)
             {
-                float totalDamage = weapon.weaponDamage + _playerStats.MagicPower;
+                float totalDamage = GetTotalDamage(weapon);
                 enemyHealth.TakeDamage(totalDamage, weapon.elementType);
             }
         }
 
         Debug.Log("Mouse position AOE attack with " + weapon.equipmentName);
+    }
+
+    private float GetTotalDamage(EquipmentData weapon)
+    {
+        if (weapon.classType == ClassType.Mage)
+        {
+            return weapon.weaponDamage + _playerStats.MagicPower;
+        }
+
+        return weapon.weaponDamage + _playerStats.Attack;
     }
 
     private Vector3 GetMouseAOEPosition(EquipmentData weapon)

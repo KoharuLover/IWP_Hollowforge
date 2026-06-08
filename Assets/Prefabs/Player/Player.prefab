@@ -242,7 +242,7 @@ MonoBehaviour:
   _baseMaxMana: 50
   _baseAttack: 100
   _baseAttackSpeed: 1
-  _baseMagicPower: 10
+  _baseMagicPower: 100
   _baseMovementSpeed: 1
   _baseDashRange: 2
 --- !u!114 &6506690889074469478
