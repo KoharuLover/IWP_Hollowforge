@@ -21,7 +21,7 @@ MonoBehaviour:
   classType: 2
   weaponAttackType: 2
   aoeCastType: 0
-  weaponDamage: 10
+  weaponDamage: 500
   attackRange: 0
   attackRadius: 0
   attackCooldown: 1

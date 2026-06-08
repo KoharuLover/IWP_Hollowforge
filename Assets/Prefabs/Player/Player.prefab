@@ -238,9 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a9b1c588ae73a42b26f4f07012f6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  _baseMaxHealth: 100
+  _baseMaxHealth: 1000
   _baseMaxMana: 50
-  _baseAttack: 10
+  _baseAttack: 100
   _baseAttackSpeed: 1
   _baseMagicPower: 10
   _baseMovementSpeed: 1
@@ -269,7 +269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceec2d2b7e0b378448a6b647ca001cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  _animator: {fileID: 0}
+  _animator: {fileID: 6304780288273211981}
+  _flashColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashDuration: 0.1
 --- !u!114 &5498108048459313097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,3 +297,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   _attackPoint: {fileID: 4212802039165431655}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64

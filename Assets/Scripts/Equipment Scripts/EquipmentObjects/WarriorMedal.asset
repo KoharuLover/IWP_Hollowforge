@@ -20,14 +20,20 @@ MonoBehaviour:
   elementType: 0
   classType: 1
   weaponAttackType: 0
+  aoeCastType: 0
   weaponDamage: 0
   attackRange: 0
   attackRadius: 0
+  attackCooldown: 0
+  projectileSpeed: 0
+  aoeDuration: 0
+  aoeTickInterval: 0
   attackVFXPrefab: {fileID: 0}
   projectilePrefab: {fileID: 0}
-  maxHealthBonus: 20
+  impactVFXPrefab: {fileID: 0}
+  maxHealthBonus: 500
   maxManaBonus: 0
-  attackBonus: 20
+  attackBonus: 250
   attackSpeedBonus: 0
   magicPowerBonus: 0
   movementSpeedBonus: 0

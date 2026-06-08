@@ -152,7 +152,7 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log(gameObject.name + " died");
     }
 
-    // Animation Event: put this at the end of the death animation.
+    // Animation Event (Death)
     public void DestroyEnemy()
     {
         Destroy(gameObject);

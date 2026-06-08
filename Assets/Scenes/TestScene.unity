@@ -468,6 +468,14 @@ PrefabInstance:
       propertyPath: _flashColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _attack
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _maxHealth
+      value: 2500
+      objectReference: {fileID: 0}
     - target: {fileID: 4472408904687376948, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton (8)
@@ -1107,6 +1115,14 @@ PrefabInstance:
       propertyPath: _flashColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _attack
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _maxHealth
+      value: 2500
+      objectReference: {fileID: 0}
     - target: {fileID: 4472408904687376948, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton (4)
@@ -1175,6 +1191,14 @@ PrefabInstance:
     - target: {fileID: 1080085883189504908, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: _flashColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _attack
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _maxHealth
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 4472408904687376948, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: m_Name
@@ -1290,6 +1314,14 @@ PrefabInstance:
     - target: {fileID: 1080085883189504908, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: _flashColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _attack
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _maxHealth
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 4472408904687376948, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: m_Name
@@ -1584,9 +1616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14d82fd60b098a4b935ca66379b9569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryTester
-  testWeapon: {fileID: 11400000, guid: 345a60631fa016c45a8bff058490bb05, type: 2}
-  testArmor: {fileID: 11400000, guid: b0d5fed4c6f6ef04796dafb936e0e706, type: 2}
-  testArtifact: {fileID: 11400000, guid: 8a8cd679f7649b9429317315aaa74d0d, type: 2}
+  testWeapon: {fileID: 11400000, guid: dd7246c5f79f444498312e26fc938583, type: 2}
+  testArmor: {fileID: 11400000, guid: 8eff23941383dae4ba9db235469d50db, type: 2}
+  testArtifact: {fileID: 11400000, guid: 21000fddb9202a9428b0186391895164, type: 2}
 --- !u!4 &839892665
 Transform:
   m_ObjectHideFlags: 0
@@ -1621,6 +1653,14 @@ PrefabInstance:
     - target: {fileID: 1080085883189504908, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: _flashColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _attack
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _maxHealth
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 4472408904687376948, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: m_Name
@@ -1798,11 +1838,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!95 &928598386 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6304780288273211981, guid: 19cef9b67882d5c48a50ad6b07e4f084, type: 3}
-  m_PrefabInstance: {fileID: 1640201892274249364}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &929633426
 GameObject:
   m_ObjectHideFlags: 0
@@ -12512,6 +12547,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _attack
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _maxHealth
+      value: 2500
+      objectReference: {fileID: 0}
     - target: {fileID: 4472408904687376948, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton (3)
@@ -12580,6 +12623,14 @@ PrefabInstance:
     - target: {fileID: 1080085883189504908, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: _flashColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _attack
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _maxHealth
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 4472408904687376948, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: m_Name
@@ -12674,6 +12725,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _attack
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251800068020769853, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
+      propertyPath: _maxHealth
+      value: 2500
+      objectReference: {fileID: 0}
     - target: {fileID: 4472408904687376948, guid: df7c002cc7bb5724e99d52b6e95912c1, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton (6)
@@ -16702,18 +16761,6 @@ PrefabInstance:
     - target: {fileID: 4115692924340689871, guid: 19cef9b67882d5c48a50ad6b07e4f084, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4212802039165431655, guid: 19cef9b67882d5c48a50ad6b07e4f084, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178960910701075713, guid: 19cef9b67882d5c48a50ad6b07e4f084, type: 3}
-      propertyPath: _animator
-      value: 
-      objectReference: {fileID: 928598386}
-    - target: {fileID: 7177037694652106668, guid: 19cef9b67882d5c48a50ad6b07e4f084, type: 3}
-      propertyPath: _enemyLayer.m_Bits
-      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

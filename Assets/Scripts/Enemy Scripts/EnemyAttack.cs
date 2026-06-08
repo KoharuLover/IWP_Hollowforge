@@ -89,7 +89,7 @@ public class EnemyAttack : MonoBehaviour
             _animator.SetBool(IsAttackingParameter, true);
         }
 
-        Debug.Log(gameObject.name + " started attack animation.");
+        //Debug.Log(gameObject.name + " started attack animation.");
     }
 
     // Animation Event Start
@@ -103,11 +103,11 @@ public class EnemyAttack : MonoBehaviour
         if (CanStillHitPlayer())
         {
             _playerHealth.TakeDamage(_enemyStats.Attack);
-            Debug.Log(gameObject.name + " hit player for " + _enemyStats.Attack + " damage.");
+            //Debug.Log(gameObject.name + " hit player for " + _enemyStats.Attack + " damage.");
         }
         else
         {
-            Debug.Log(gameObject.name + " missed.");
+            //Debug.Log(gameObject.name + " missed.");
         }
     }
 
@@ -123,7 +123,7 @@ public class EnemyAttack : MonoBehaviour
 
         _nextAttackTime = Time.time + 1f / _enemyStats.AttackSpeed;
 
-        Debug.Log(gameObject.name + " finished attack.");
+        //Debug.Log(gameObject.name + " finished attack.");
     }
 
     private bool CanStillHitPlayer()

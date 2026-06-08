@@ -8,6 +8,7 @@ public class EquipmentManager : MonoBehaviour
     [SerializeField] private EquipmentInstance weaponSlot1;
     [SerializeField] private EquipmentInstance weaponSlot2;
     [SerializeField] private int activeWeaponSlotIndex = 0;
+
     public int ActiveWeaponSlotIndex => activeWeaponSlotIndex;
 
     [Header("Armour Slots")]
@@ -42,6 +43,7 @@ public class EquipmentManager : MonoBehaviour
     }
 
     // ----------------------------------- EQUIPPING FUNC ----------------------------------- //
+
     public bool EquipItem(EquipmentInstance equipment)
     {
         if (equipment == null || equipment.equipmentData == null)
@@ -80,6 +82,9 @@ public class EquipmentManager : MonoBehaviour
         {
             weaponSlot1 = equipment;
             InventoryManager.Instance.RemoveFromInventory(equipment);
+
+            RefreshPlayerStats();
+
             Debug.Log("Equipped weapon in slot 1: " + equipment.GetDisplayName());
             return true;
         }
@@ -88,6 +93,9 @@ public class EquipmentManager : MonoBehaviour
         {
             weaponSlot2 = equipment;
             InventoryManager.Instance.RemoveFromInventory(equipment);
+
+            RefreshPlayerStats();
+
             Debug.Log("Equipped weapon in slot 2: " + equipment.GetDisplayName());
             return true;
         }
@@ -131,6 +139,9 @@ public class EquipmentManager : MonoBehaviour
 
         armourSlot = equipment;
         InventoryManager.Instance.RemoveFromInventory(equipment);
+
+        RefreshPlayerStats();
+
         Debug.Log("Equipped armour: " + equipment.GetDisplayName());
         return true;
     }
@@ -143,6 +154,9 @@ public class EquipmentManager : MonoBehaviour
             {
                 artifactSlots[i] = equipment;
                 InventoryManager.Instance.RemoveFromInventory(equipment);
+
+                RefreshPlayerStats();
+
                 Debug.Log("Equipped artifact in slot " + (i + 1) + ": " + equipment.GetDisplayName());
                 return true;
             }
@@ -172,7 +186,22 @@ public class EquipmentManager : MonoBehaviour
         return slot == null || slot.equipmentData == null;
     }
 
+    private void RefreshPlayerStats()
+    {
+        PlayerStats playerStats = FindFirstObjectByType<PlayerStats>();
 
+        if (playerStats != null)
+        {
+            playerStats.RecalculateEquipmentStats();
+        }
+
+        PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
+
+        if (playerHealth != null)
+        {
+            playerHealth.RefreshMaxHealth();
+        }
+    }
 
     // ----------------------------------- WEAPON FUNC ----------------------------------- //
 
