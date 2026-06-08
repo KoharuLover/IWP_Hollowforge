@@ -182,7 +182,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: 0, y: -0.14}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -192,7 +192,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.25, y: 0.1}
+  m_Size: {x: 0.15, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &4251800068020769853
 MonoBehaviour:
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   _chaseRange: 2.5
-  _attackRange: 0.25
+  _attackRange: 0.3
 --- !u!114 &4034297713467568987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,10 +238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac186f196013c4448ac10a67e142743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  _stopDistance: 0.2
+  _stopDistance: 0.25
   _directionSmoothSpeed: 8
   _surroundStartDistance: 1.2
-  _surroundRadius: 0.25
+  _surroundRadius: 0.3
   _spotCheckCount: 6
   _spotOccupiedRadius: 0.2
   _spotRefreshInterval: 0.5
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c83bb2ebcce0714aa6dff4ceb09505f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  _attackRange: 0.25
+  _attackRange: 0.4
 --- !u!114 &1080085883189504908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,3 +275,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c0c9f383e0758498533b196d583110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  _flashColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashDuration: 0.1
