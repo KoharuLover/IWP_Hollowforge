@@ -22,8 +22,8 @@ MonoBehaviour:
   weaponAttackType: 3
   aoeCastType: 2
   weaponDamage: 1500
-  attackRange: 2
-  attackRadius: 0.5
+  attackRange: 10
+  attackRadius: 2.5
   attackCooldown: 5
   projectileSpeed: 0
   aoeDuration: 0

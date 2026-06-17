@@ -22,9 +22,9 @@ MonoBehaviour:
   weaponAttackType: 1
   aoeCastType: 0
   weaponDamage: 300
-  attackRange: 0.2
-  attackRadius: 0.28
-  attackCooldown: 1
+  attackRange: 1
+  attackRadius: 1.25
+  attackCooldown: 0.75
   projectileSpeed: 1
   aoeDuration: 3
   aoeTickInterval: 0.5

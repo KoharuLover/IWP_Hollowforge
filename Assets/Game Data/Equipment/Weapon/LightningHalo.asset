@@ -23,7 +23,7 @@ MonoBehaviour:
   aoeCastType: 1
   weaponDamage: 150
   attackRange: 0
-  attackRadius: 0.3
+  attackRadius: 2
   attackCooldown: 10
   projectileSpeed: 0
   aoeDuration: 5
@@ -36,6 +36,6 @@ MonoBehaviour:
   attackBonus: 0
   attackSpeedBonus: 0
   magicPowerBonus: 100
-  movementSpeedBonus: 0.5
+  movementSpeedBonus: 1
   dashRangeBonus: 0
   description: 

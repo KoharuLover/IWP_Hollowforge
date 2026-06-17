@@ -21,20 +21,20 @@ MonoBehaviour:
   classType: 2
   weaponAttackType: 2
   aoeCastType: 0
-  weaponDamage: 400
+  weaponDamage: 120
   attackRange: 0
   attackRadius: 0
-  attackCooldown: 1
-  projectileSpeed: 3
-  aoeDuration: 3
-  aoeTickInterval: 0.5
+  attackCooldown: 0.5
+  projectileSpeed: 5
+  aoeDuration: 0
+  aoeTickInterval: 0
   attackVFXPrefab: {fileID: 0}
   projectilePrefab: {fileID: 3442244347395614748, guid: 2ed9a95789a532b43b8859f94ac0f0cc, type: 3}
   impactVFXPrefab: {fileID: 1414230575958593667, guid: 73f39c7fb54975144b3bbf722d725f9e, type: 3}
   maxHealthBonus: 0
   maxManaBonus: 0
   attackBonus: 0
-  attackSpeedBonus: 3
+  attackSpeedBonus: 0
   magicPowerBonus: 0
   movementSpeedBonus: 0
   dashRangeBonus: 0
