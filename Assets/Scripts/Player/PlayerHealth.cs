@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Animator _animator;
 
     [Header("Hit Flash")]
+    [ColorUsage(true,true)]
     [SerializeField] private Color _flashColor = Color.red;
     [SerializeField] private float _flashDuration = 0.1f;
 

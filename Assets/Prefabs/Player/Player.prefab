@@ -121,7 +121,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8793639957104055765, guid: d5e88a681dbb1a84ebaa4d7a87493d93, type: 3}
+  m_Sprite: {fileID: -1431357373, guid: c8d6ac2478b27eb4a9511dbb1432cfc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   _animator: {fileID: 6304780288273211981}
-  _flashColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashColor: {r: 4, g: 0, b: 0, a: 1}
   _flashDuration: 0.1
 --- !u!114 &5498108048459313097
 MonoBehaviour:

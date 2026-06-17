@@ -8,16 +8,16 @@ public class PlayerMovement : MonoBehaviour
     private PlayerHealth _playerHealth;
     private Rigidbody2D _rb;
     private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
 
-    private const string _horizontal = "Horizontal";
-    private const string _vertical = "Vertical";
-    private const string _lastHorizontal = "LastHorizontal";
-    private const string _lastVertical = "LastVertical";
+    private const string IsMovingParameter = "IsMoving";
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
         _playerStats = GetComponent<PlayerStats>();
         _playerHealth = GetComponent<PlayerHealth>();
     }
@@ -27,19 +27,48 @@ public class PlayerMovement : MonoBehaviour
         if (_playerHealth.IsDead)
         {
             _movement = Vector2.zero;
+            _animator.SetBool(IsMovingParameter, false);
             return;
         }
-        _movement.Set(InputManager.Movement.x, InputManager.Movement.y);
+
+        _movement = InputManager.Movement;
+
+        if (_movement.sqrMagnitude > 1f)
+        {
+            _movement.Normalize();
+        }
+
+        UpdateAnimation();
+        UpdateFacingDirection();
+    }
+
+    private void FixedUpdate()
+    {
+        if (_playerHealth.IsDead)
+        {
+            _rb.linearVelocity = Vector2.zero;
+            return;
+        }
 
         _rb.linearVelocity = _movement * _playerStats.MovementSpeed;
+    }
 
-        _animator.SetFloat(_horizontal, _movement.x);
-        _animator.SetFloat(_vertical, _movement.y);
+    private void UpdateAnimation()
+    {
+        bool isMoving = _movement.sqrMagnitude > 0.01f;
 
-        if (_movement != Vector2.zero)
+        _animator.SetBool(IsMovingParameter, isMoving);
+    }
+
+    private void UpdateFacingDirection()
+    {
+        if (_movement.x > 0.01f)
         {
-            _animator.SetFloat(_lastHorizontal, _movement.x);
-            _animator.SetFloat(_lastVertical, _movement.y);
+            _spriteRenderer.flipX = false;
+        }
+        else if (_movement.x < -0.01f)
+        {
+            _spriteRenderer.flipX = true;
         }
     }
 }
