@@ -87,7 +87,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7928858964255100155, guid: f672e2a7bd1bcdc4489879d13a79c222, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -182,17 +182,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.14}
+  m_Offset: {x: 0, y: -0.65}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.24, y: 0.32}
+    oldSize: {x: 1.5, y: 2}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.15, y: 0.1}
+  m_Size: {x: 1.15, y: 0.75}
   m_EdgeRadius: 0
 --- !u!114 &4251800068020769853
 MonoBehaviour:
@@ -209,7 +209,7 @@ MonoBehaviour:
   _maxHealth: 2500
   _attack: 100
   _attackSpeed: 1
-  _movementSpeed: 0.8
+  _movementSpeed: 4
   _elementalResistance: 0
   _elementalWeakness: 0
 --- !u!114 &4961129773987312990
@@ -224,8 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5030f270085c34883f3d5e27f45761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  _chaseRange: 2.5
-  _attackRange: 0.3
+  _chaseRange: 20
+  _attackRange: 1.65
 --- !u!114 &4034297713467568987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,15 +238,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac186f196013c4448ac10a67e142743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  _stopDistance: 0.25
+  _stopDistance: 1.2
   _directionSmoothSpeed: 8
-  _surroundStartDistance: 1.2
-  _surroundRadius: 0.3
+  _surroundStartDistance: 8
+  _surroundRadius: 1.25
   _spotCheckCount: 6
-  _spotOccupiedRadius: 0.2
+  _spotOccupiedRadius: 1.3
   _spotRefreshInterval: 0.5
-  _separationRadius: 0.2
-  _separationWeight: 0.25
+  _separationRadius: 1.5
+  _separationWeight: 0.75
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c83bb2ebcce0714aa6dff4ceb09505f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  _attackRange: 0.4
+  _attackRange: 2
 --- !u!114 &1080085883189504908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,5 +275,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c0c9f383e0758498533b196d583110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  _flashColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashColor: {r: 4, g: 0, b: 0, a: 1}
   _flashDuration: 0.1
