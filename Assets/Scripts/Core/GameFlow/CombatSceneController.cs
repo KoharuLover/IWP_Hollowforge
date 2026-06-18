@@ -139,4 +139,9 @@ public class CombatSceneController : MonoBehaviour
 
         Debug.Log("Combat room cleared.");
     }
+
+    public void ContinueToShop()
+    {
+        SceneLoader.LoadShopScene();
+    }
 }
