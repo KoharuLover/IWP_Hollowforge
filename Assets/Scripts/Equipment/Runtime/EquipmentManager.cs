@@ -4,6 +4,9 @@ public class EquipmentManager : MonoBehaviour
 {
     public static EquipmentManager Instance;
 
+    [Header("Equipment Editing")]
+    public bool CanModifyEquipment { get; private set; } = true;
+
     [Header("Weapon Slots")]
     [SerializeField] private EquipmentInstance weaponSlot1;
     [SerializeField] private EquipmentInstance weaponSlot2;
@@ -40,6 +43,22 @@ public class EquipmentManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    // ----------------------------------- EDITING LOCK ----------------------------------- //
+
+    public void SetEquipmentEditingAllowed(bool isAllowed)
+    {
+        CanModifyEquipment = isAllowed;
+
+        if (CanModifyEquipment)
+        {
+            Debug.Log("Equipment editing unlocked.");
+        }
+        else
+        {
+            Debug.Log("Equipment editing locked.");
+        }
     }
 
     // ----------------------------------- EQUIPPING FUNC ----------------------------------- //

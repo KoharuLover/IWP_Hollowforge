@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
+
+    public event Action InventoryChanged;
 
     [Header("Inventory Settings")]
     [SerializeField] private int maxInventorySlots = 9;
@@ -24,7 +27,55 @@ public class InventoryManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        InitialiseInventorySlots();
     }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
+
+    // ----------------------------------- INITIALISATION ----------------------------------- //
+
+    private void InitialiseInventorySlots()
+    {
+        while (inventorySlots.Count < maxInventorySlots)
+        {
+            inventorySlots.Add(null);
+        }
+
+        if (inventorySlots.Count > maxInventorySlots)
+        {
+            inventorySlots.RemoveRange(maxInventorySlots, inventorySlots.Count - maxInventorySlots);
+        }
+
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            if (IsSlotEmpty(inventorySlots[i]))
+            {
+                inventorySlots[i] = null;
+            }
+        }
+    }
+
+    // ----------------------------------- GET ITEM ----------------------------------- //
+
+    public EquipmentInstance GetItemAt(int slotIndex)
+    {
+        if (IsValidSlotIndex(slotIndex) == false)
+        {
+            Debug.LogWarning("Invalid inventory slot index.");
+            return null;
+        }
+
+        return inventorySlots[slotIndex];
+    }
+
+    // ----------------------------------- ADD ITEM ----------------------------------- //
 
     public bool AddToInventory(EquipmentInstance equipment)
     {
@@ -34,22 +85,64 @@ public class InventoryManager : MonoBehaviour
             return false;
         }
 
-        if (IsInventoryFull())
+        int emptySlotIndex = FindFirstEmptySlot();
+
+        if (emptySlotIndex == -1)
         {
             Debug.Log("Inventory is full. Cannot add " + equipment.GetDisplayName());
             return false;
         }
 
-        inventorySlots.Add(equipment);
-        Debug.Log("Added to inventory: " + equipment.GetDisplayName());
+        inventorySlots[emptySlotIndex] = equipment;
+
+        NotifyInventoryChanged();
+
+        Debug.Log("Added to inventory slot " + (emptySlotIndex + 1) + ": " + equipment.GetDisplayName());
         return true;
     }
 
     public bool AddToInventory(EquipmentData equipmentData)
     {
+        if (equipmentData == null)
+        {
+            Debug.LogWarning("Tried to add null EquipmentData to inventory.");
+            return false;
+        }
+
         EquipmentInstance newEquipment = new EquipmentInstance(equipmentData, 1);
+
         return AddToInventory(newEquipment);
     }
+
+    public bool AddToSpecificSlot(EquipmentInstance equipment, int slotIndex)
+    {
+        if (equipment == null || equipment.equipmentData == null)
+        {
+            Debug.LogWarning("Tried to add null equipment to an inventory slot.");
+            return false;
+        }
+
+        if (IsValidSlotIndex(slotIndex) == false)
+        {
+            Debug.LogWarning("Invalid inventory slot index.");
+            return false;
+        }
+
+        if (IsSlotEmpty(inventorySlots[slotIndex]) == false)
+        {
+            Debug.Log("Inventory slot " + (slotIndex + 1) + " is already occupied.");
+            return false;
+        }
+
+        inventorySlots[slotIndex] = equipment;
+
+        NotifyInventoryChanged();
+
+        Debug.Log("Added " + equipment.GetDisplayName() + " to inventory slot " + (slotIndex + 1));
+        return true;
+    }
+
+    // ----------------------------------- REMOVE ITEM ----------------------------------- //
 
     public bool RemoveFromInventory(EquipmentInstance equipment)
     {
@@ -58,25 +151,93 @@ public class InventoryManager : MonoBehaviour
             return false;
         }
 
-        if (inventorySlots.Contains(equipment) == false)
+        int slotIndex = inventorySlots.IndexOf(equipment);
+
+        if (slotIndex == -1)
         {
             Debug.Log("Inventory does not contain: " + equipment.GetDisplayName());
             return false;
         }
 
-        inventorySlots.Remove(equipment);
-        Debug.Log("Removed from inventory: " + equipment.GetDisplayName());
+        inventorySlots[slotIndex] = null;
+
+        NotifyInventoryChanged();
+
+        Debug.Log("Removed from inventory slot " + (slotIndex + 1) + ": " + equipment.GetDisplayName());
         return true;
     }
 
+    public bool RemoveFromSlot(int slotIndex)
+    {
+        if (IsValidSlotIndex(slotIndex) == false)
+        {
+            Debug.LogWarning("Invalid inventory slot index.");
+            return false;
+        }
+
+        if (IsSlotEmpty(inventorySlots[slotIndex]))
+        {
+            Debug.Log("That inventory slot is already empty.");
+            return false;
+        }
+
+        EquipmentInstance removedEquipment = inventorySlots[slotIndex];
+
+        inventorySlots[slotIndex] = null;
+
+        NotifyInventoryChanged();
+
+        Debug.Log("Removed " + removedEquipment.GetDisplayName() + " from inventory slot " + (slotIndex + 1));
+        return true;
+    }
+
+    // ----------------------------------- SWAP ITEMS ----------------------------------- //
+
+    public bool SwapSlots(int firstSlotIndex, int secondSlotIndex)
+    {
+        if (IsValidSlotIndex(firstSlotIndex) == false || IsValidSlotIndex(secondSlotIndex) == false)
+        {
+            Debug.LogWarning("Invalid inventory slot index.");
+            return false;
+        }
+
+        if (firstSlotIndex == secondSlotIndex)
+        {
+            return false;
+        }
+
+        EquipmentInstance temporaryEquipment = inventorySlots[firstSlotIndex];
+
+        inventorySlots[firstSlotIndex] = inventorySlots[secondSlotIndex];
+
+        inventorySlots[secondSlotIndex] = temporaryEquipment;
+
+        NotifyInventoryChanged();
+
+        Debug.Log("Swapped inventory slots " + (firstSlotIndex + 1) + " and " + (secondSlotIndex + 1));
+        return true;
+    }
+
+    // ----------------------------------- INVENTORY INFO ----------------------------------- //
+
     public bool IsInventoryFull()
     {
-        return inventorySlots.Count >= maxInventorySlots;
+        return FindFirstEmptySlot() == -1;
     }
 
     public int GetEmptySlotCount()
     {
-        return maxInventorySlots - inventorySlots.Count;
+        int emptySlotCount = 0;
+
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            if (IsSlotEmpty(inventorySlots[i]))
+            {
+                emptySlotCount++;
+            }
+        }
+
+        return emptySlotCount;
     }
 
     public int GetEquipmentCount(EquipmentData equipmentData, int starLevel)
@@ -86,6 +247,11 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < inventorySlots.Count; i++)
         {
             EquipmentInstance currentEquipment = inventorySlots[i];
+
+            if (IsSlotEmpty(currentEquipment))
+            {
+                continue;
+            }
 
             if (currentEquipment.equipmentData == equipmentData && currentEquipment.starLevel == starLevel)
             {
@@ -98,7 +264,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool RemoveMultipleFromInventory(EquipmentData equipmentData, int starLevel, int amount)
     {
-        if (equipmentData == null)
+        if (equipmentData == null || amount <= 0)
         {
             return false;
         }
@@ -115,9 +281,14 @@ public class InventoryManager : MonoBehaviour
         {
             EquipmentInstance currentEquipment = inventorySlots[i];
 
+            if (IsSlotEmpty(currentEquipment))
+            {
+                continue;
+            }
+
             if (currentEquipment.equipmentData == equipmentData && currentEquipment.starLevel == starLevel)
             {
-                inventorySlots.RemoveAt(i);
+                inventorySlots[i] = null;
                 removedCount++;
 
                 if (removedCount >= amount)
@@ -127,7 +298,39 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
+        NotifyInventoryChanged();
+
         Debug.Log("Removed " + amount + " copies of " + equipmentData.equipmentName + " *" + starLevel);
         return true;
+    }
+
+    // ----------------------------------- SLOT HELPERS ----------------------------------- //
+
+    private int FindFirstEmptySlot()
+    {
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            if (IsSlotEmpty(inventorySlots[i]))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private bool IsSlotEmpty(EquipmentInstance equipment)
+    {
+        return equipment == null || equipment.equipmentData == null;
+    }
+
+    private bool IsValidSlotIndex(int slotIndex)
+    {
+        return slotIndex >= 0 && slotIndex < inventorySlots.Count;
+    }
+
+    private void NotifyInventoryChanged()
+    {
+        InventoryChanged?.Invoke();
     }
 }

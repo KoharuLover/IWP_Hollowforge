@@ -16,6 +16,7 @@ public class CombatSceneController : MonoBehaviour
 
     private void Start()
     {
+        LockEquipmentEditing();
         FindPlayer();
         HideEndPanels();
 
@@ -48,28 +49,19 @@ public class CombatSceneController : MonoBehaviour
 
     private void FindPlayer()
     {
-        GameObject playerObject =
-            GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
         if (playerObject == null)
         {
-            Debug.LogWarning(
-                "CombatSceneController could not find the Player.",
-                this
-            );
-
+            Debug.LogWarning("CombatSceneController could not find the Player.", this);
             return;
         }
 
-        _playerHealth =
-            playerObject.GetComponent<PlayerHealth>();
+        _playerHealth = playerObject.GetComponent<PlayerHealth>();
 
         if (_playerHealth == null)
         {
-            Debug.LogWarning(
-                "The Player does not have a PlayerHealth component.",
-                playerObject
-            );
+            Debug.LogWarning("The Player does not have a PlayerHealth component.", playerObject);
         }
     }
 
@@ -103,10 +95,7 @@ public class CombatSceneController : MonoBehaviour
 
     private void CheckVictory()
     {
-        EnemyHealth[] enemies =
-            FindObjectsByType<EnemyHealth>(
-                FindObjectsSortMode.None
-            );
+        EnemyHealth[] enemies = FindObjectsByType<EnemyHealth>(FindObjectsSortMode.None);
 
         if (enemies.Length > 0)
         {
@@ -143,5 +132,16 @@ public class CombatSceneController : MonoBehaviour
     public void ContinueToShop()
     {
         SceneLoader.LoadShopScene();
+    }
+
+    private void LockEquipmentEditing()
+    {
+        if (EquipmentManager.Instance == null)
+        {
+            Debug.LogWarning("CombatSceneController could not find the EquipmentManager.", this);
+            return;
+        }
+
+        EquipmentManager.Instance.SetEquipmentEditingAllowed(false);
     }
 }
