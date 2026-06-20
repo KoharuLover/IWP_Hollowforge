@@ -15,7 +15,7 @@ MonoBehaviour:
   equipmentName: Lightning Halo
   equipmentType: 0
   armourSlotType: 0
-  icon: {fileID: 0}
+  icon: {fileID: -6539987921457255071, guid: fcdf7c149d8d1b24d86ba4eba5a0ff6e, type: 3}
   cost: 2
   elementType: 4
   classType: 2

@@ -15,7 +15,7 @@ MonoBehaviour:
   equipmentName: Iron Sword
   equipmentType: 0
   armourSlotType: 0
-  icon: {fileID: 0}
+  icon: {fileID: 5988912824036537700, guid: fcdf7c149d8d1b24d86ba4eba5a0ff6e, type: 3}
   cost: 1
   elementType: 1
   classType: 1
