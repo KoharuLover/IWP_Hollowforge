@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
-    public static Vector2 Movement;
-    public static Vector2 MousePosition;
+    public static InputManager Instance { get; private set; }
 
-    public static bool AttackPressed;
-    public static bool WeaponSlot1Pressed;
-    public static bool WeaponSlot2Pressed;
+    public static Vector2 Movement { get; private set; }
+    public static Vector2 MousePosition { get; private set; }
+
+    public static bool AttackPressed { get; private set; }
+    public static bool WeaponSlot1Pressed { get; private set; }
+    public static bool WeaponSlot2Pressed { get; private set; }
 
     private PlayerInput _playerInput;
 
@@ -20,22 +23,92 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        _playerInput = GetComponent<PlayerInput>();
+        SetUpSingleton();
 
-        _moveAction = _playerInput.actions["Move"];
-        _attackAction = _playerInput.actions["Attack"];
-        _mousePositionAction = _playerInput.actions["MousePosition"];
-        _weaponSlot1Action = _playerInput.actions["WeaponSlot1"];
-        _weaponSlot2Action = _playerInput.actions["WeaponSlot2"];
+        if (Instance != this)
+        {
+            return;
+        }
+
+        GetInputActions();
     }
 
     private void Update()
     {
-        Movement = _moveAction.ReadValue<Vector2>();
-        MousePosition = _mousePositionAction.ReadValue<Vector2>();
+        ReadContinuousInput();
+        ReadButtonInput();
+    }
 
-        AttackPressed = _attackAction.WasPressedThisFrame();
-        WeaponSlot1Pressed = _weaponSlot1Action.WasPressedThisFrame();
-        WeaponSlot2Pressed = _weaponSlot2Action.WasPressedThisFrame();
+    private void OnDisable()
+    {
+        ResetInput();
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
+
+    private void SetUpSingleton()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("A duplicate InputManager was found and removed.", gameObject);
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
+    private void GetInputActions()
+    {
+        _playerInput = GetComponent<PlayerInput>();
+
+        _moveAction = FindInputAction("Move");
+        _attackAction = FindInputAction("Attack");
+        _mousePositionAction = FindInputAction("MousePosition");
+        _weaponSlot1Action = FindInputAction("WeaponSlot1");
+        _weaponSlot2Action = FindInputAction("WeaponSlot2");
+    }
+
+    private InputAction FindInputAction(string actionName)
+    {
+        InputAction action = _playerInput.actions.FindAction(actionName);
+
+        if (action == null)
+        {
+            Debug.LogError(
+                "Input action '" + actionName + "' was not found.",
+                gameObject
+            );
+        }
+
+        return action;
+    }
+
+    private void ReadContinuousInput()
+    {
+        Movement = _moveAction != null ? _moveAction.ReadValue<Vector2>() : Vector2.zero;
+        MousePosition = _mousePositionAction != null ? _mousePositionAction.ReadValue<Vector2>() : Vector2.zero;
+    }
+
+    private void ReadButtonInput()
+    {
+        AttackPressed = _attackAction != null && _attackAction.WasPressedThisFrame();
+        WeaponSlot1Pressed = _weaponSlot1Action != null && _weaponSlot1Action.WasPressedThisFrame();
+        WeaponSlot2Pressed = _weaponSlot2Action != null && _weaponSlot2Action.WasPressedThisFrame();
+    }
+
+    private void ResetInput()
+    {
+        Movement = Vector2.zero;
+        MousePosition = Vector2.zero;
+
+        AttackPressed = false;
+        WeaponSlot1Pressed = false;
+        WeaponSlot2Pressed = false;
     }
 }

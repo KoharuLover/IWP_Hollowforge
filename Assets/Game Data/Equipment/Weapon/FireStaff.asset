@@ -15,7 +15,7 @@ MonoBehaviour:
   equipmentName: Fire Staff
   equipmentType: 0
   armourSlotType: 0
-  icon: {fileID: 0}
+  icon: {fileID: -9867010548473155, guid: fcdf7c149d8d1b24d86ba4eba5a0ff6e, type: 3}
   cost: 1
   elementType: 2
   classType: 2

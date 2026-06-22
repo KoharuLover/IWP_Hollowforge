@@ -1,8 +1,14 @@
+using System;
 using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
     public static EquipmentManager Instance;
+
+    public event Action EquipmentChanged;
+
+    [Header("Equipment Editing")]
+    public bool CanModifyEquipment { get; private set; } = true;
 
     [Header("Weapon Slots")]
     [SerializeField] private EquipmentInstance weaponSlot1;
@@ -18,7 +24,8 @@ public class EquipmentManager : MonoBehaviour
     [SerializeField] private EquipmentInstance bootsSlot;
 
     [Header("Artifact Slots")]
-    [SerializeField] private EquipmentInstance[] artifactSlots = new EquipmentInstance[6];
+    [SerializeField]
+    private EquipmentInstance[] artifactSlots = new EquipmentInstance[6];
 
     public EquipmentInstance WeaponSlot1 => weaponSlot1;
     public EquipmentInstance WeaponSlot2 => weaponSlot2;
@@ -42,10 +49,40 @@ public class EquipmentManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
+
+    // ----------------------------------- EDITING LOCK ----------------------------------- //
+
+    public void SetEquipmentEditingAllowed(bool isAllowed)
+    {
+        CanModifyEquipment = isAllowed;
+
+        if (CanModifyEquipment)
+        {
+            Debug.Log("Equipment editing unlocked.");
+        }
+        else
+        {
+            Debug.Log("Equipment editing locked.");
+        }
+    }
+
     // ----------------------------------- EQUIPPING FUNC ----------------------------------- //
 
     public bool EquipItem(EquipmentInstance equipment)
     {
+        if (CanModifyEquipment == false)
+        {
+            Debug.Log("Equipment cannot be changed during combat.");
+            return false;
+        }
+
         if (equipment == null || equipment.equipmentData == null)
         {
             Debug.LogWarning("Tried to equip null equipment.");
@@ -67,6 +104,7 @@ public class EquipmentManager : MonoBehaviour
             return EquipArtifact(equipment);
         }
 
+        Debug.LogWarning("Invalid equipment type.");
         return false;
     }
 
@@ -81,9 +119,11 @@ public class EquipmentManager : MonoBehaviour
         if (IsSlotEmpty(weaponSlot1))
         {
             weaponSlot1 = equipment;
+
             InventoryManager.Instance.RemoveFromInventory(equipment);
 
             RefreshPlayerStats();
+            NotifyEquipmentChanged();
 
             Debug.Log("Equipped weapon in slot 1: " + equipment.GetDisplayName());
             return true;
@@ -92,9 +132,11 @@ public class EquipmentManager : MonoBehaviour
         if (IsSlotEmpty(weaponSlot2))
         {
             weaponSlot2 = equipment;
+
             InventoryManager.Instance.RemoveFromInventory(equipment);
 
             RefreshPlayerStats();
+            NotifyEquipmentChanged();
 
             Debug.Log("Equipped weapon in slot 2: " + equipment.GetDisplayName());
             return true;
@@ -138,9 +180,11 @@ public class EquipmentManager : MonoBehaviour
         }
 
         armourSlot = equipment;
+
         InventoryManager.Instance.RemoveFromInventory(equipment);
 
         RefreshPlayerStats();
+        NotifyEquipmentChanged();
 
         Debug.Log("Equipped armour: " + equipment.GetDisplayName());
         return true;
@@ -153,9 +197,11 @@ public class EquipmentManager : MonoBehaviour
             if (IsSlotEmpty(artifactSlots[i]))
             {
                 artifactSlots[i] = equipment;
+
                 InventoryManager.Instance.RemoveFromInventory(equipment);
 
                 RefreshPlayerStats();
+                NotifyEquipmentChanged();
 
                 Debug.Log("Equipped artifact in slot " + (i + 1) + ": " + equipment.GetDisplayName());
                 return true;
@@ -166,7 +212,9 @@ public class EquipmentManager : MonoBehaviour
         return false;
     }
 
-    private bool IsSameWeaponAlreadyEquipped(EquipmentInstance equipment)
+    private bool IsSameWeaponAlreadyEquipped(
+        EquipmentInstance equipment
+    )
     {
         if (IsSlotEmpty(weaponSlot1) == false && weaponSlot1.equipmentData == equipment.equipmentData)
         {
@@ -203,6 +251,11 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
+    private void NotifyEquipmentChanged()
+    {
+        EquipmentChanged?.Invoke();
+    }
+
     // ----------------------------------- WEAPON FUNC ----------------------------------- //
 
     public EquipmentInstance ActiveWeapon
@@ -213,7 +266,6 @@ public class EquipmentManager : MonoBehaviour
             {
                 return weaponSlot1;
             }
-
             return weaponSlot2;
         }
     }
@@ -222,11 +274,10 @@ public class EquipmentManager : MonoBehaviour
     {
         get
         {
-            if (ActiveWeapon == null)
+            if (ActiveWeapon == null || ActiveWeapon.equipmentData == null)
             {
                 return null;
             }
-
             return ActiveWeapon.equipmentData;
         }
     }

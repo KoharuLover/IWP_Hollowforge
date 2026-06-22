@@ -166,7 +166,7 @@ public class EquipmentData : ScriptableObject
     // --------------------------------------------------
 
     [Header("Description")]
-    [TextArea(3, 6)]
+    [ResizableTextArea]
     public string description;
 
     // --------------------------------------------------

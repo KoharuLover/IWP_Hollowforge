@@ -15,7 +15,7 @@ MonoBehaviour:
   equipmentName: Warrior Medal
   equipmentType: 2
   armourSlotType: 0
-  icon: {fileID: 0}
+  icon: {fileID: 210307502, guid: fcdf7c149d8d1b24d86ba4eba5a0ff6e, type: 3}
   cost: 1
   elementType: 0
   classType: 1
