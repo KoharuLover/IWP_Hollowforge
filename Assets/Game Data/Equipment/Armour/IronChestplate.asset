@@ -15,7 +15,7 @@ MonoBehaviour:
   equipmentName: Iron Chestplate
   equipmentType: 1
   armourSlotType: 2
-  icon: {fileID: 0}
+  icon: {fileID: 5306745366809136867, guid: 1b45041e931b1954995e23a82ba4a654, type: 3}
   cost: 1
   elementType: 0
   classType: 1

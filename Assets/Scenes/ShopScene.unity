@@ -493,6 +493,7 @@ GameObject:
   - component: {fileID: 157622784}
   - component: {fileID: 157622783}
   - component: {fileID: 157622782}
+  - component: {fileID: 157622785}
   m_Layer: 5
   m_Name: WeaponSlot1
   m_TagString: Untagged
@@ -573,6 +574,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157622780}
   m_CullTransparentMesh: 1
+--- !u!114 &157622785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157622780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 0
+  _slotIndex: 1
+  _itemIcon: {fileID: 334977049}
 --- !u!1 &159293272
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +601,7 @@ GameObject:
   - component: {fileID: 159293276}
   - component: {fileID: 159293275}
   - component: {fileID: 159293274}
+  - component: {fileID: 159293277}
   m_Layer: 5
   m_Name: ArmourSlot0
   m_TagString: Untagged
@@ -665,6 +682,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159293272}
   m_CullTransparentMesh: 1
+--- !u!114 &159293277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159293272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 1
+  _slotIndex: 0
+  _itemIcon: {fileID: 1070001310}
 --- !u!1 &182996900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,6 +1313,7 @@ GameObject:
   - component: {fileID: 398020710}
   - component: {fileID: 398020709}
   - component: {fileID: 398020708}
+  - component: {fileID: 398020711}
   m_Layer: 5
   m_Name: ArtifactSlot4
   m_TagString: Untagged
@@ -1361,6 +1394,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398020706}
   m_CullTransparentMesh: 1
+--- !u!114 &398020711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398020706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 5
+  _slotIndex: 4
+  _itemIcon: {fileID: 1479333072}
 --- !u!1 &407203145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,6 +1721,7 @@ GameObject:
   - component: {fileID: 488430153}
   - component: {fileID: 488430152}
   - component: {fileID: 488430151}
+  - component: {fileID: 488430154}
   m_Layer: 5
   m_Name: ArtifactSlot3
   m_TagString: Untagged
@@ -1753,6 +1802,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488430149}
   m_CullTransparentMesh: 1
+--- !u!114 &488430154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488430149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 5
+  _slotIndex: 3
+  _itemIcon: {fileID: 436313508}
 --- !u!1 &499060770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2008,6 +2072,7 @@ GameObject:
   - component: {fileID: 519526191}
   - component: {fileID: 519526190}
   - component: {fileID: 519526189}
+  - component: {fileID: 519526192}
   m_Layer: 5
   m_Name: WeaponSlot0
   m_TagString: Untagged
@@ -2088,6 +2153,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519526187}
   m_CullTransparentMesh: 1
+--- !u!114 &519526192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519526187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 0
+  _slotIndex: 0
+  _itemIcon: {fileID: 929309155}
 --- !u!1 &589887372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2440,6 +2520,7 @@ GameObject:
   - component: {fileID: 776874903}
   - component: {fileID: 776874902}
   - component: {fileID: 776874901}
+  - component: {fileID: 776874904}
   m_Layer: 5
   m_Name: ArmourSlot1
   m_TagString: Untagged
@@ -2520,6 +2601,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776874899}
   m_CullTransparentMesh: 1
+--- !u!114 &776874904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776874899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 2
+  _slotIndex: 0
+  _itemIcon: {fileID: 194804269}
 --- !u!1 &825665225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3465,6 +3561,7 @@ GameObject:
   - component: {fileID: 1151874044}
   - component: {fileID: 1151874043}
   - component: {fileID: 1151874042}
+  - component: {fileID: 1151874045}
   m_Layer: 5
   m_Name: ArtifactSlot1
   m_TagString: Untagged
@@ -3545,6 +3642,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151874040}
   m_CullTransparentMesh: 1
+--- !u!114 &1151874045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151874040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 5
+  _slotIndex: 1
+  _itemIcon: {fileID: 68340039}
 --- !u!1 &1172069033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3711,6 +3823,7 @@ GameObject:
   - component: {fileID: 1269401197}
   - component: {fileID: 1269401196}
   - component: {fileID: 1269401195}
+  - component: {fileID: 1269401198}
   m_Layer: 5
   m_Name: ArtifactSlot5
   m_TagString: Untagged
@@ -3791,6 +3904,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269401193}
   m_CullTransparentMesh: 1
+--- !u!114 &1269401198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269401193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 5
+  _slotIndex: 5
+  _itemIcon: {fileID: 833061471}
 --- !u!1 &1322139852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,6 +4081,7 @@ GameObject:
   - component: {fileID: 1415334474}
   - component: {fileID: 1415334473}
   - component: {fileID: 1415334472}
+  - component: {fileID: 1415334475}
   m_Layer: 5
   m_Name: ArmourSlot2
   m_TagString: Untagged
@@ -4033,6 +4162,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415334470}
   m_CullTransparentMesh: 1
+--- !u!114 &1415334475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415334470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 3
+  _slotIndex: 0
+  _itemIcon: {fileID: 469869327}
 --- !u!1 &1479333070
 GameObject:
   m_ObjectHideFlags: 0
@@ -4120,6 +4264,7 @@ GameObject:
   - component: {fileID: 1625492274}
   - component: {fileID: 1625492273}
   - component: {fileID: 1625492275}
+  - component: {fileID: 1625492276}
   m_Layer: 5
   m_Name: ArtifactSlot0
   m_TagString: Untagged
@@ -4200,6 +4345,21 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!114 &1625492276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625492271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 5
+  _slotIndex: 0
+  _itemIcon: {fileID: 1362655736}
 --- !u!1 &1641800062
 GameObject:
   m_ObjectHideFlags: 0
@@ -4326,6 +4486,7 @@ GameObject:
   - component: {fileID: 1732790256}
   - component: {fileID: 1732790255}
   - component: {fileID: 1732790254}
+  - component: {fileID: 1732790257}
   m_Layer: 5
   m_Name: ArmourSlot3
   m_TagString: Untagged
@@ -4406,6 +4567,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732790252}
   m_CullTransparentMesh: 1
+--- !u!114 &1732790257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732790252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 4
+  _slotIndex: 0
+  _itemIcon: {fileID: 1920318789}
 --- !u!1 &1768317687
 GameObject:
   m_ObjectHideFlags: 0
@@ -4436,8 +4612,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryTester
   testWeapon: {fileID: 11400000, guid: b0d5fed4c6f6ef04796dafb936e0e706, type: 2}
-  testArmor: {fileID: 11400000, guid: 345a60631fa016c45a8bff058490bb05, type: 2}
-  testArtifact: {fileID: 11400000, guid: 8a8cd679f7649b9429317315aaa74d0d, type: 2}
+  testArmor: {fileID: 11400000, guid: 8a8cd679f7649b9429317315aaa74d0d, type: 2}
+  testArtifact: {fileID: 11400000, guid: 21000fddb9202a9428b0186391895164, type: 2}
 --- !u!4 &1768317689
 Transform:
   m_ObjectHideFlags: 0
@@ -4988,6 +5164,7 @@ GameObject:
   - component: {fileID: 2119145935}
   - component: {fileID: 2119145934}
   - component: {fileID: 2119145933}
+  - component: {fileID: 2119145936}
   m_Layer: 5
   m_Name: ArtifactSlot2
   m_TagString: Untagged
@@ -5068,6 +5245,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119145931}
   m_CullTransparentMesh: 1
+--- !u!114 &2119145936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119145931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9cea86342e03d4cbea227aedc33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentSlotUI
+  _slotType: 5
+  _slotIndex: 2
+  _itemIcon: {fileID: 589887374}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

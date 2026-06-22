@@ -24,11 +24,9 @@ public class InventorySlotUI : MonoBehaviour
             return;
         }
 
-        EquipmentInstance equipment =
-            InventoryManager.Instance.GetItemAt(_slotIndex);
+        EquipmentInstance equipment = InventoryManager.Instance.GetItemAt(_slotIndex);
 
-        if (equipment == null ||
-            equipment.equipmentData == null)
+        if (equipment == null || equipment.equipmentData == null)
         {
             ClearSlot();
             return;
