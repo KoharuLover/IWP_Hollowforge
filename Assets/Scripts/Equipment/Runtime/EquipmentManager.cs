@@ -65,6 +65,12 @@ public class EquipmentManager : MonoBehaviour
 
     public bool EquipItem(EquipmentInstance equipment)
     {
+        if (CanModifyEquipment == false)
+        {
+            Debug.Log("Equipment cannot be changed during combat.");
+            return false;
+        }
+
         if (equipment == null || equipment.equipmentData == null)
         {
             Debug.LogWarning("Tried to equip null equipment.");
