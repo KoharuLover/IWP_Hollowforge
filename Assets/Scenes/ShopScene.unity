@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 157622783}
   - component: {fileID: 157622782}
   - component: {fileID: 157622785}
+  - component: {fileID: 157622787}
   - component: {fileID: 157622786}
   m_Layer: 5
   m_Name: WeaponSlot1
@@ -602,6 +603,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &157622787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157622780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1 &159293272
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,6 +628,7 @@ GameObject:
   - component: {fileID: 159293275}
   - component: {fileID: 159293274}
   - component: {fileID: 159293277}
+  - component: {fileID: 159293279}
   - component: {fileID: 159293278}
   m_Layer: 5
   m_Name: ArmourSlot0
@@ -723,6 +737,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &159293279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159293272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1 &182996900
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +1005,7 @@ GameObject:
   - component: {fileID: 258975321}
   - component: {fileID: 258975324}
   - component: {fileID: 258975325}
+  - component: {fileID: 258975326}
   m_Layer: 5
   m_Name: InventorySlot7
   m_TagString: Untagged
@@ -1084,6 +1111,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ef7e1a7cee0934685cbd7e0dff34c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryDragHandler
+--- !u!114 &258975326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258975319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b26df9c86644449a7c42457e683f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryDropHandler
 --- !u!1 &334977047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1212,7 @@ GameObject:
   - component: {fileID: 335447973}
   - component: {fileID: 335447976}
   - component: {fileID: 335447977}
+  - component: {fileID: 335447978}
   m_Layer: 5
   m_Name: InventorySlot2
   m_TagString: Untagged
@@ -1278,6 +1318,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ef7e1a7cee0934685cbd7e0dff34c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryDragHandler
+--- !u!114 &335447978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335447971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b26df9c86644449a7c42457e683f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryDropHandler
 --- !u!1 &389293510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,6 +1418,7 @@ GameObject:
   - component: {fileID: 398020709}
   - component: {fileID: 398020708}
   - component: {fileID: 398020711}
+  - component: {fileID: 398020713}
   - component: {fileID: 398020712}
   m_Layer: 5
   m_Name: ArtifactSlot4
@@ -1474,6 +1527,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &398020713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398020706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1 &407203145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,6 +1852,7 @@ GameObject:
   - component: {fileID: 488430152}
   - component: {fileID: 488430151}
   - component: {fileID: 488430154}
+  - component: {fileID: 488430156}
   - component: {fileID: 488430155}
   m_Layer: 5
   m_Name: ArtifactSlot3
@@ -1895,6 +1961,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &488430156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488430149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1 &499060770
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,6 +1987,7 @@ GameObject:
   - component: {fileID: 499060772}
   - component: {fileID: 499060775}
   - component: {fileID: 499060776}
+  - component: {fileID: 499060777}
   m_Layer: 5
   m_Name: InventorySlot1
   m_TagString: Untagged
@@ -2014,6 +2093,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ef7e1a7cee0934685cbd7e0dff34c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryDragHandler
+--- !u!114 &499060777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499060770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b26df9c86644449a7c42457e683f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryDropHandler
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,6 +2255,7 @@ GameObject:
   - component: {fileID: 519526190}
   - component: {fileID: 519526189}
   - component: {fileID: 519526192}
+  - component: {fileID: 519526194}
   - component: {fileID: 519526193}
   m_Layer: 5
   m_Name: WeaponSlot0
@@ -2272,6 +2364,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &519526194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519526187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1 &589887372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2520,6 +2624,7 @@ GameObject:
   - component: {fileID: 766679772}
   - component: {fileID: 766679775}
   - component: {fileID: 766679776}
+  - component: {fileID: 766679777}
   m_Layer: 5
   m_Name: InventorySlot0
   m_TagString: Untagged
@@ -2625,6 +2730,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ef7e1a7cee0934685cbd7e0dff34c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryDragHandler
+--- !u!114 &766679777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766679770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b26df9c86644449a7c42457e683f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryDropHandler
 --- !u!1 &776874899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,6 +2755,7 @@ GameObject:
   - component: {fileID: 776874902}
   - component: {fileID: 776874901}
   - component: {fileID: 776874904}
+  - component: {fileID: 776874906}
   - component: {fileID: 776874905}
   m_Layer: 5
   m_Name: ArmourSlot1
@@ -2746,6 +2864,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &776874906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776874899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1 &825665225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2760,6 +2890,7 @@ GameObject:
   - component: {fileID: 825665227}
   - component: {fileID: 825665230}
   - component: {fileID: 825665231}
+  - component: {fileID: 825665232}
   m_Layer: 5
   m_Name: InventorySlot3
   m_TagString: Untagged
@@ -2865,6 +2996,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ef7e1a7cee0934685cbd7e0dff34c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryDragHandler
+--- !u!114 &825665232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825665225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b26df9c86644449a7c42457e683f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryDropHandler
 --- !u!1 &833061469
 GameObject:
   m_ObjectHideFlags: 0
@@ -3029,6 +3172,7 @@ GameObject:
   - component: {fileID: 957178036}
   - component: {fileID: 957178039}
   - component: {fileID: 957178040}
+  - component: {fileID: 957178041}
   m_Layer: 5
   m_Name: InventorySlot8
   m_TagString: Untagged
@@ -3134,6 +3278,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ef7e1a7cee0934685cbd7e0dff34c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryDragHandler
+--- !u!114 &957178041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957178034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b26df9c86644449a7c42457e683f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryDropHandler
 --- !u!1 &960739433
 GameObject:
   m_ObjectHideFlags: 0
@@ -3223,6 +3379,7 @@ GameObject:
   - component: {fileID: 969216015}
   - component: {fileID: 969216018}
   - component: {fileID: 969216019}
+  - component: {fileID: 969216020}
   m_Layer: 5
   m_Name: InventorySlot4
   m_TagString: Untagged
@@ -3328,6 +3485,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ef7e1a7cee0934685cbd7e0dff34c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryDragHandler
+--- !u!114 &969216020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969216013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b26df9c86644449a7c42457e683f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryDropHandler
 --- !u!1 &1012996700
 GameObject:
   m_ObjectHideFlags: 0
@@ -3342,6 +3511,7 @@ GameObject:
   - component: {fileID: 1012996702}
   - component: {fileID: 1012996705}
   - component: {fileID: 1012996706}
+  - component: {fileID: 1012996707}
   m_Layer: 5
   m_Name: InventorySlot5
   m_TagString: Untagged
@@ -3447,6 +3617,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ef7e1a7cee0934685cbd7e0dff34c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryDragHandler
+--- !u!114 &1012996707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012996700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b26df9c86644449a7c42457e683f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryDropHandler
 --- !u!1 &1070001308
 GameObject:
   m_ObjectHideFlags: 0
@@ -3744,6 +3926,7 @@ GameObject:
   - component: {fileID: 1151874043}
   - component: {fileID: 1151874042}
   - component: {fileID: 1151874045}
+  - component: {fileID: 1151874047}
   - component: {fileID: 1151874046}
   m_Layer: 5
   m_Name: ArtifactSlot1
@@ -3852,6 +4035,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &1151874047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151874040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1 &1172069033
 GameObject:
   m_ObjectHideFlags: 0
@@ -4019,6 +4214,7 @@ GameObject:
   - component: {fileID: 1269401196}
   - component: {fileID: 1269401195}
   - component: {fileID: 1269401198}
+  - component: {fileID: 1269401200}
   - component: {fileID: 1269401199}
   m_Layer: 5
   m_Name: ArtifactSlot5
@@ -4127,6 +4323,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &1269401200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269401193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1 &1322139852
 GameObject:
   m_ObjectHideFlags: 0
@@ -4290,6 +4498,7 @@ GameObject:
   - component: {fileID: 1415334473}
   - component: {fileID: 1415334472}
   - component: {fileID: 1415334475}
+  - component: {fileID: 1415334477}
   - component: {fileID: 1415334476}
   m_Layer: 5
   m_Name: ArmourSlot2
@@ -4398,6 +4607,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &1415334477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415334470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1 &1479333070
 GameObject:
   m_ObjectHideFlags: 0
@@ -4486,6 +4707,7 @@ GameObject:
   - component: {fileID: 1625492273}
   - component: {fileID: 1625492275}
   - component: {fileID: 1625492276}
+  - component: {fileID: 1625492278}
   - component: {fileID: 1625492277}
   m_Layer: 5
   m_Name: ArtifactSlot0
@@ -4594,6 +4816,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &1625492278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625492271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1 &1641800062
 GameObject:
   m_ObjectHideFlags: 0
@@ -4721,6 +4955,7 @@ GameObject:
   - component: {fileID: 1732790255}
   - component: {fileID: 1732790254}
   - component: {fileID: 1732790257}
+  - component: {fileID: 1732790259}
   - component: {fileID: 1732790258}
   m_Layer: 5
   m_Name: ArmourSlot3
@@ -4829,6 +5064,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &1732790259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732790252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1 &1768317687
 GameObject:
   m_ObjectHideFlags: 0
@@ -5005,6 +5252,7 @@ GameObject:
   - component: {fileID: 1805211397}
   - component: {fileID: 1805211400}
   - component: {fileID: 1805211401}
+  - component: {fileID: 1805211402}
   m_Layer: 5
   m_Name: InventorySlot6
   m_TagString: Untagged
@@ -5110,6 +5358,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ef7e1a7cee0934685cbd7e0dff34c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryDragHandler
+--- !u!114 &1805211402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805211395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b26df9c86644449a7c42457e683f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryDropHandler
 --- !u!1 &1909171130
 GameObject:
   m_ObjectHideFlags: 0
@@ -5425,6 +5685,7 @@ GameObject:
   - component: {fileID: 2119145934}
   - component: {fileID: 2119145933}
   - component: {fileID: 2119145936}
+  - component: {fileID: 2119145938}
   - component: {fileID: 2119145937}
   m_Layer: 5
   m_Name: ArtifactSlot2
@@ -5533,6 +5794,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
+--- !u!114 &2119145938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119145931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15935dc04b48e4ab62605172868bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDragHandler
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

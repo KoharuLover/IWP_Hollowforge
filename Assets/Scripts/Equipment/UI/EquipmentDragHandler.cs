@@ -2,12 +2,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+[RequireComponent(typeof(EquipmentSlotUI))]
+public class EquipmentDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public static EquipmentInstance DraggedEquipment{ get; private set; }
-    public static int SourceInventorySlotIndex{ get; private set; } = -1;
 
-    private InventorySlotUI _inventorySlotUI;
+    public static EquipmentUISlotType SourceSlotType{ get; private set; }
+
+    public static int SourceSlotIndex{ get; private set; } = -1;
+
+    private EquipmentSlotUI _equipmentSlotUI;
     private RectTransform _slotRectTransform;
     private Canvas _rootCanvas;
 
@@ -16,7 +20,7 @@ public class InventoryDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandl
 
     private void Awake()
     {
-        _inventorySlotUI = GetComponent<InventorySlotUI>();
+        _equipmentSlotUI = GetComponent<EquipmentSlotUI>();
         _slotRectTransform = GetComponent<RectTransform>();
         Canvas canvas = GetComponentInParent<Canvas>();
 
@@ -28,13 +32,21 @@ public class InventoryDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandl
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (_inventorySlotUI == null || InventoryManager.Instance == null || _rootCanvas == null)
+        if (_equipmentSlotUI == null || EquipmentManager.Instance == null || _rootCanvas == null)
         {
             eventData.pointerDrag = null;
             return;
         }
 
-        EquipmentInstance equipment = InventoryManager.Instance.GetItemAt(_inventorySlotUI.SlotIndex);
+        if (EquipmentManager.Instance.CanModifyEquipment == false)
+        {
+            Debug.Log("Equipment cannot be changed during combat.");
+
+            eventData.pointerDrag = null;
+            return;
+        }
+
+        EquipmentInstance equipment = _equipmentSlotUI.GetEquippedItem();
 
         if (equipment == null || equipment.equipmentData == null || equipment.equipmentData.icon == null)
         {
@@ -43,14 +55,14 @@ public class InventoryDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandl
         }
 
         DraggedEquipment = equipment;
-
-        SourceInventorySlotIndex = _inventorySlotUI.SlotIndex;
+        SourceSlotType = _equipmentSlotUI.SlotType;
+        SourceSlotIndex = _equipmentSlotUI.SlotIndex;
 
         CreateDragIcon(equipment.equipmentData.icon);
 
         MoveDragIcon(eventData);
 
-        Debug.Log("Started dragging " + equipment.GetDisplayName() + " from inventory slot " + SourceInventorySlotIndex);
+        Debug.Log("Started dragging equipped item: " + equipment.GetDisplayName());
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -63,14 +75,14 @@ public class InventoryDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandl
         DestroyDragIcon();
 
         DraggedEquipment = null;
-        SourceInventorySlotIndex = -1;
+        SourceSlotIndex = -1;
 
-        Debug.Log("Finished dragging inventory item.");
+        Debug.Log("Finished dragging equipped item.");
     }
 
     private void CreateDragIcon(Sprite equipmentIcon)
     {
-        _dragIconObject = new GameObject("Inventory Drag Icon", typeof(RectTransform), typeof(CanvasGroup), typeof(Image));
+        _dragIconObject = new GameObject("Equipment Drag Icon", typeof(RectTransform), typeof(CanvasGroup), typeof(Image));
 
         _dragIconObject.transform.SetParent(_rootCanvas.transform, false);
         _dragIconRectTransform = _dragIconObject.GetComponent<RectTransform>();

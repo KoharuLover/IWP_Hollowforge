@@ -62,7 +62,7 @@ public class EquipmentSlotUI : MonoBehaviour
         }
     }
 
-    private EquipmentInstance GetEquippedItem()
+    public EquipmentInstance GetEquippedItem()
     {
         if (EquipmentManager.Instance == null)
         {
