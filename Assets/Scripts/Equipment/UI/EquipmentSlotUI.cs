@@ -20,6 +20,9 @@ public class EquipmentSlotUI : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private Image _itemIcon;
 
+    public EquipmentUISlotType SlotType => _slotType;
+    public int SlotIndex => _slotIndex;
+
     private void Start()
     {
         if (EquipmentManager.Instance != null)
@@ -59,7 +62,7 @@ public class EquipmentSlotUI : MonoBehaviour
         }
     }
 
-    private EquipmentInstance GetEquippedItem()
+    public EquipmentInstance GetEquippedItem()
     {
         if (EquipmentManager.Instance == null)
         {
