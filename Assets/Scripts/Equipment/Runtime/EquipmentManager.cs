@@ -108,6 +108,177 @@ public class EquipmentManager : MonoBehaviour
         return false;
     }
 
+    public bool EquipWeaponToSlot(EquipmentInstance equipment, int slotIndex)
+    {
+        if (CanModifyEquipment == false)
+        {
+            Debug.Log("Equipment cannot be changed during combat.");
+            return false;
+        }
+
+        if (equipment == null || equipment.equipmentData == null)
+        {
+            Debug.LogWarning("Tried to equip null equipment.");
+            return false;
+        }
+
+        if (equipment.equipmentData.equipmentType != EquipmentType.Weapon)
+        {
+            Debug.Log("Only weapons can be placed in weapon slots.");
+            return false;
+        }
+
+        if (slotIndex < 0 || slotIndex > 1)
+        {
+            Debug.LogWarning("Invalid weapon slot index.");
+            return false;
+        }
+
+        if (IsSameWeaponAlreadyEquipped(equipment))
+        {
+            Debug.Log("Cannot equip the same weapon twice: " + equipment.GetDisplayName());
+            return false;
+        }
+
+        EquipmentInstance targetSlot = slotIndex == 0 ? weaponSlot1 : weaponSlot2;
+
+        if (IsSlotEmpty(targetSlot) == false)
+        {
+            Debug.Log("Weapon slot " + (slotIndex + 1) + " is already occupied.");
+            return false;
+        }
+
+        if (InventoryManager.Instance == null)
+        {
+            Debug.LogWarning("EquipmentManager could not find InventoryManager.");
+            return false;
+        }
+
+        if (InventoryManager.Instance.RemoveFromInventory(equipment) == false)
+        {
+            Debug.Log("The weapon was not found in the inventory.");
+            return false;
+        }
+
+        if (slotIndex == 0)
+        {
+            weaponSlot1 = equipment;
+        }
+        else
+        {
+            weaponSlot2 = equipment;
+        }
+
+        RefreshPlayerStats();
+        NotifyEquipmentChanged();
+
+        Debug.Log("Equipped " + equipment.GetDisplayName() + " into weapon slot " + (slotIndex + 1));
+        return true;
+    }
+    public bool EquipArmourToSpecificSlot(EquipmentInstance equipment, ArmourSlotType targetSlotType)
+    {
+        if (CanModifyEquipment == false)
+        {
+            Debug.Log("Equipment cannot be changed during combat.");
+            return false;
+        }
+
+        if (equipment == null || equipment.equipmentData == null)
+        {
+            Debug.LogWarning("Tried to equip null equipment.");
+            return false;
+        }
+
+        if (equipment.equipmentData.equipmentType != EquipmentType.Armour)
+        {
+            Debug.Log("Only armour can be placed in armour slots.");
+            return false;
+        }
+
+        if (equipment.equipmentData.armourSlotType != targetSlotType)
+        {
+            Debug.Log(equipment.GetDisplayName() + " cannot be placed in that armour slot.");
+            return false;
+        }
+
+        if (targetSlotType == ArmourSlotType.Helmet)
+        {
+            return EquipArmourToSlot(ref helmetSlot, equipment);
+        }
+
+        if (targetSlotType == ArmourSlotType.Chestplate)
+        {
+            return EquipArmourToSlot(ref chestplateSlot, equipment);
+        }
+
+        if (targetSlotType == ArmourSlotType.Pants)
+        {
+            return EquipArmourToSlot(ref pantsSlot, equipment);
+        }
+
+        if (targetSlotType == ArmourSlotType.Boots)
+        {
+            return EquipArmourToSlot(ref bootsSlot, equipment);
+        }
+
+        Debug.LogWarning("Invalid armour slot type.");
+        return false;
+    }
+    public bool EquipArtifactToSlot(EquipmentInstance equipment, int slotIndex)
+    {
+        if (CanModifyEquipment == false)
+        {
+            Debug.Log("Equipment cannot be changed during combat.");
+            return false;
+        }
+
+        if (equipment == null || equipment.equipmentData == null)
+        {
+            Debug.LogWarning("Tried to equip null equipment.");
+            return false;
+        }
+
+        if (equipment.equipmentData.equipmentType != EquipmentType.Artifact)
+        {
+            Debug.Log("Only artifacts can be placed in artifact slots.");
+            return false;
+        }
+
+        if (slotIndex < 0 || slotIndex >= artifactSlots.Length)
+        {
+            Debug.LogWarning("Invalid artifact slot index.");
+            return false;
+        }
+
+        if (IsSlotEmpty(artifactSlots[slotIndex]) == false)
+        {
+            Debug.Log("Artifact slot " + (slotIndex + 1) + " is already occupied.");
+            return false;
+        }
+
+        if (InventoryManager.Instance == null)
+        {
+            Debug.LogWarning("EquipmentManager could not find InventoryManager.");
+            return false;
+        }
+
+        bool removedFromInventory = InventoryManager.Instance.RemoveFromInventory(equipment);
+
+        if (removedFromInventory == false)
+        {
+            Debug.Log("The artifact was not found in the inventory.");
+            return false;
+        }
+
+        artifactSlots[slotIndex] = equipment;
+
+        RefreshPlayerStats();
+        NotifyEquipmentChanged();
+
+        Debug.Log("Equipped " + equipment.GetDisplayName() + " into artifact slot " + (slotIndex + 1));
+        return true;
+    }
+
     private bool EquipWeapon(EquipmentInstance equipment)
     {
         if (IsSameWeaponAlreadyEquipped(equipment))
@@ -145,7 +316,6 @@ public class EquipmentManager : MonoBehaviour
         Debug.Log("No empty weapon slot.");
         return false;
     }
-
     private bool EquipArmour(EquipmentInstance equipment)
     {
         ArmourSlotType armourSlotType = equipment.equipmentData.armourSlotType;
@@ -170,7 +340,6 @@ public class EquipmentManager : MonoBehaviour
         Debug.Log("Invalid armour slot type.");
         return false;
     }
-
     private bool EquipArmourToSlot(ref EquipmentInstance armourSlot, EquipmentInstance equipment)
     {
         if (IsSlotEmpty(armourSlot) == false)
@@ -189,7 +358,6 @@ public class EquipmentManager : MonoBehaviour
         Debug.Log("Equipped armour: " + equipment.GetDisplayName());
         return true;
     }
-
     private bool EquipArtifact(EquipmentInstance equipment)
     {
         for (int i = 0; i < artifactSlots.Length; i++)
@@ -212,9 +380,7 @@ public class EquipmentManager : MonoBehaviour
         return false;
     }
 
-    private bool IsSameWeaponAlreadyEquipped(
-        EquipmentInstance equipment
-    )
+    private bool IsSameWeaponAlreadyEquipped(EquipmentInstance equipment)
     {
         if (IsSlotEmpty(weaponSlot1) == false && weaponSlot1.equipmentData == equipment.equipmentData)
         {
@@ -228,7 +394,6 @@ public class EquipmentManager : MonoBehaviour
 
         return false;
     }
-
     private bool IsSlotEmpty(EquipmentInstance slot)
     {
         return slot == null || slot.equipmentData == null;

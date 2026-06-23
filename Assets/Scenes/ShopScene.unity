@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2073,6 +2073,7 @@ GameObject:
   - component: {fileID: 519526190}
   - component: {fileID: 519526189}
   - component: {fileID: 519526192}
+  - component: {fileID: 519526193}
   m_Layer: 5
   m_Name: WeaponSlot0
   m_TagString: Untagged
@@ -2168,6 +2169,18 @@ MonoBehaviour:
   _slotType: 0
   _slotIndex: 0
   _itemIcon: {fileID: 929309155}
+--- !u!114 &519526193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519526187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f811392e7ed8247a9aee70fb64da74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropHandler
 --- !u!1 &589887372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,6 +2428,7 @@ GameObject:
   - component: {fileID: 766679773}
   - component: {fileID: 766679772}
   - component: {fileID: 766679775}
+  - component: {fileID: 766679776}
   m_Layer: 5
   m_Name: InventorySlot0
   m_TagString: Untagged
@@ -2508,6 +2522,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   _itemIcon: {fileID: 1251397558}
+--- !u!114 &766679776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766679770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ef7e1a7cee0934685cbd7e0dff34c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryDragHandler
 --- !u!1 &776874899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,7 +2874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
