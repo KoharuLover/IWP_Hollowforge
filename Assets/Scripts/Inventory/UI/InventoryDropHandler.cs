@@ -13,7 +13,52 @@ public class InventoryDropHandler : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (_inventorySlotUI == null || EquipmentManager.Instance == null)
+        if (_inventorySlotUI == null)
+        {
+            return;
+        }
+
+        // First check whether the item came from another inventory slot.
+        if (TryMoveInventoryItem())
+        {
+            return;
+        }
+
+        // Otherwise, check whether it came from an equipment slot.
+        TryMoveEquipmentToInventory();
+    }
+
+    private bool TryMoveInventoryItem()
+    {
+        if (InventoryManager.Instance == null)
+        {
+            return false;
+        }
+
+        EquipmentInstance draggedEquipment = InventoryDragHandler.DraggedEquipment;
+
+        int sourceInventorySlotIndex = InventoryDragHandler.SourceInventorySlotIndex;
+
+        if (draggedEquipment == null || draggedEquipment.equipmentData == null || sourceInventorySlotIndex < 0)
+        {
+            return false;
+        }
+
+        int targetInventorySlotIndex = _inventorySlotUI.SlotIndex;
+
+        if (sourceInventorySlotIndex == targetInventorySlotIndex)
+        {
+            return true;
+        }
+
+        InventoryManager.Instance.SwapSlots(sourceInventorySlotIndex, targetInventorySlotIndex);
+
+        return true;
+    }
+
+    private void TryMoveEquipmentToInventory()
+    {
+        if (EquipmentManager.Instance == null)
         {
             return;
         }
@@ -25,11 +70,6 @@ public class InventoryDropHandler : MonoBehaviour, IDropHandler
             return;
         }
 
-        TryMoveEquipmentToInventory();
-    }
-
-    private void TryMoveEquipmentToInventory()
-    {
         EquipmentUISlotType sourceSlotType = EquipmentDragHandler.SourceSlotType;
 
         int sourceSlotIndex = EquipmentDragHandler.SourceSlotIndex;
@@ -69,9 +109,6 @@ public class InventoryDropHandler : MonoBehaviour, IDropHandler
         if (sourceSlotType == EquipmentUISlotType.Artifact)
         {
             EquipmentManager.Instance.UnequipArtifactToInventorySlot(sourceSlotIndex, targetInventorySlotIndex);
-            return;
         }
-
-        Debug.Log("Moving this equipment type into the inventory is not implemented yet.");
     }
 }

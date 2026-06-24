@@ -10,32 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c48c524585d444fa439b2a92cc8578, type: 3}
-  m_Name: MageNecklace
+  m_Name: IronHelmet
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData
-  equipmentName: Mage Necklace
-  equipmentType: 2
-  armourSlotType: 0
-  icon: {fileID: 2764424577577374543, guid: 1b45041e931b1954995e23a82ba4a654, type: 3}
+  equipmentName: Iron Helmet
+  equipmentType: 1
+  armourSlotType: 1
+  icon: {fileID: -3180112147342175292, guid: 1b45041e931b1954995e23a82ba4a654, type: 3}
   cost: 1
   elementType: 0
-  classType: 2
+  classType: 1
   weaponAttackType: 0
   aoeCastType: 0
-  weaponDamage: 0
-  attackRange: 0
-  attackRadius: 0
-  attackCooldown: 0
-  projectileSpeed: 0
-  aoeDuration: 0
-  aoeTickInterval: 0
+  weaponDamage: 10
+  attackRange: 0.8
+  attackRadius: 0.5
+  attackCooldown: 1
+  projectileSpeed: 1
+  aoeDuration: 3
+  aoeTickInterval: 0.5
   attackVFXPrefab: {fileID: 0}
   projectilePrefab: {fileID: 0}
   impactVFXPrefab: {fileID: 0}
-  maxHealthBonus: 0
+  maxHealthBonus: 200
   maxManaBonus: 0
   attackBonus: 0
   attackSpeedBonus: 0
-  magicPowerBonus: 500
+  magicPowerBonus: 0
   movementSpeedBonus: 0
   dashRangeBonus: 0
   description: 
