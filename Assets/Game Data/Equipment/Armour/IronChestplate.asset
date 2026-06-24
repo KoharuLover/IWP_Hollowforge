@@ -31,7 +31,7 @@ MonoBehaviour:
   attackVFXPrefab: {fileID: 0}
   projectilePrefab: {fileID: 0}
   impactVFXPrefab: {fileID: 0}
-  maxHealthBonus: 1000
+  maxHealthBonus: 500
   maxManaBonus: 0
   attackBonus: 0
   attackSpeedBonus: 0

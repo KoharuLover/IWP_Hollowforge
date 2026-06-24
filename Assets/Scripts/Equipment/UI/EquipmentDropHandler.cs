@@ -13,26 +13,25 @@ public class EquipmentDropHandler : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (_equipmentSlotUI == null)
+        if (_equipmentSlotUI == null || EquipmentManager.Instance == null)
         {
             return;
         }
 
-        if (EquipmentManager.Instance == null)
+        EquipmentInstance inventoryEquipment = InventoryDragHandler.DraggedEquipment;
+
+        if (inventoryEquipment != null && inventoryEquipment.equipmentData != null)
         {
-            Debug.LogWarning("EquipmentDropHandler could not find EquipmentManager.", gameObject);
+            TryEquipDroppedItem(inventoryEquipment);
             return;
         }
 
-        EquipmentInstance draggedEquipment = InventoryDragHandler.DraggedEquipment;
+        EquipmentInstance equippedEquipment = EquipmentDragHandler.DraggedEquipment;
 
-        if (draggedEquipment == null || draggedEquipment.equipmentData == null)
+        if (equippedEquipment != null && equippedEquipment.equipmentData != null)
         {
-            Debug.Log("No valid inventory equipment was dropped.");
-            return;
+            TryMoveEquippedItem();
         }
-
-        TryEquipDroppedItem(draggedEquipment);
     }
 
     private void TryEquipDroppedItem(EquipmentInstance equipment)
@@ -41,39 +40,67 @@ public class EquipmentDropHandler : MonoBehaviour, IDropHandler
 
         int slotIndex = _equipmentSlotUI.SlotIndex;
 
+        int sourceInventorySlotIndex = InventoryDragHandler.SourceInventorySlotIndex;
+
         if (slotType == EquipmentUISlotType.Weapon)
         {
-            EquipmentManager.Instance.EquipWeaponToSlot(equipment, slotIndex);
+            EquipmentManager.Instance.EquipOrSwapWeaponFromInventory(equipment, sourceInventorySlotIndex, slotIndex);
             return;
         }
 
         if (slotType == EquipmentUISlotType.Helmet)
         {
-            EquipmentManager.Instance.EquipArmourToSpecificSlot(equipment, ArmourSlotType.Helmet);
+            EquipmentManager.Instance.EquipOrSwapArmourFromInventory(equipment, sourceInventorySlotIndex, ArmourSlotType.Helmet);
             return;
         }
 
         if (slotType == EquipmentUISlotType.Chestplate)
         {
-            EquipmentManager.Instance.EquipArmourToSpecificSlot(equipment, ArmourSlotType.Chestplate);
+            EquipmentManager.Instance.EquipOrSwapArmourFromInventory(equipment, sourceInventorySlotIndex, ArmourSlotType.Chestplate);
             return;
         }
 
         if (slotType == EquipmentUISlotType.Pants)
         {
-            EquipmentManager.Instance.EquipArmourToSpecificSlot(equipment, ArmourSlotType.Pants);
+            EquipmentManager.Instance.EquipOrSwapArmourFromInventory(equipment, sourceInventorySlotIndex, ArmourSlotType.Pants);
             return;
         }
 
         if (slotType == EquipmentUISlotType.Boots)
         {
-            EquipmentManager.Instance.EquipArmourToSpecificSlot(equipment, ArmourSlotType.Boots);
+            EquipmentManager.Instance.EquipOrSwapArmourFromInventory(equipment, sourceInventorySlotIndex, ArmourSlotType.Boots);
             return;
         }
 
         if (slotType == EquipmentUISlotType.Artifact)
         {
-            EquipmentManager.Instance.EquipArtifactToSlot(equipment, slotIndex);
+            EquipmentManager.Instance.EquipOrSwapArtifactFromInventory(equipment, sourceInventorySlotIndex, slotIndex);
+            return;
         }
+    }
+
+    private void TryMoveEquippedItem()
+    {
+        EquipmentUISlotType sourceSlotType = EquipmentDragHandler.SourceSlotType;
+
+        int sourceSlotIndex = EquipmentDragHandler.SourceSlotIndex;
+
+        EquipmentUISlotType targetSlotType = _equipmentSlotUI.SlotType;
+
+        int targetSlotIndex = _equipmentSlotUI.SlotIndex;
+
+        if (sourceSlotType == EquipmentUISlotType.Weapon && targetSlotType == EquipmentUISlotType.Weapon)
+        {
+            EquipmentManager.Instance.MoveOrSwapWeaponSlots(sourceSlotIndex, targetSlotIndex);
+            return;
+        }
+
+        if (sourceSlotType == EquipmentUISlotType.Artifact && targetSlotType == EquipmentUISlotType.Artifact)
+        {
+            EquipmentManager.Instance.MoveOrSwapArtifactSlots(sourceSlotIndex, targetSlotIndex);
+            return;
+        }
+
+        Debug.Log("Moving between these equipment slot types is not implemented yet.");
     }
 }
