@@ -78,37 +78,94 @@ public class InventoryDropHandler : MonoBehaviour, IDropHandler
 
         if (sourceSlotType == EquipmentUISlotType.Weapon)
         {
-            EquipmentManager.Instance.UnequipWeaponToInventorySlot(sourceSlotIndex, targetInventorySlotIndex);
+            if (InventoryManager.Instance == null)
+            {
+                Debug.LogWarning("InventoryDropHandler could not find InventoryManager.", gameObject);
+                return;
+            }
+
+            EquipmentInstance targetInventoryItem = InventoryManager.Instance.GetItemAt(targetInventorySlotIndex);
+
+            if (targetInventoryItem == null || targetInventoryItem.equipmentData == null)
+            {
+                EquipmentManager.Instance.UnequipWeaponToInventorySlot(sourceSlotIndex, targetInventorySlotIndex);
+            }
+            else
+            {
+                EquipmentManager.Instance.SwapWeaponWithInventorySlot(sourceSlotIndex, targetInventorySlotIndex);
+            }
+
             return;
         }
 
         if (sourceSlotType == EquipmentUISlotType.Helmet)
         {
-            EquipmentManager.Instance.UnequipArmourToInventorySlot(ArmourSlotType.Helmet, targetInventorySlotIndex);
+            TryMoveArmourToInventory(ArmourSlotType.Helmet, targetInventorySlotIndex);
             return;
         }
 
         if (sourceSlotType == EquipmentUISlotType.Chestplate)
         {
-            EquipmentManager.Instance.UnequipArmourToInventorySlot(ArmourSlotType.Chestplate, targetInventorySlotIndex);
+            TryMoveArmourToInventory(ArmourSlotType.Chestplate, targetInventorySlotIndex);
             return;
         }
 
         if (sourceSlotType == EquipmentUISlotType.Pants)
         {
-            EquipmentManager.Instance.UnequipArmourToInventorySlot(ArmourSlotType.Pants, targetInventorySlotIndex);
+            TryMoveArmourToInventory(ArmourSlotType.Pants, targetInventorySlotIndex);
             return;
         }
 
         if (sourceSlotType == EquipmentUISlotType.Boots)
         {
-            EquipmentManager.Instance.UnequipArmourToInventorySlot(ArmourSlotType.Boots, targetInventorySlotIndex);
+            TryMoveArmourToInventory(ArmourSlotType.Boots, targetInventorySlotIndex);
             return;
         }
 
         if (sourceSlotType == EquipmentUISlotType.Artifact)
         {
-            EquipmentManager.Instance.UnequipArtifactToInventorySlot(sourceSlotIndex, targetInventorySlotIndex);
+            TryMoveArtifactToInventory(sourceSlotIndex, targetInventorySlotIndex);
+            return;
+        }
+    }
+
+    private void TryMoveArmourToInventory(ArmourSlotType armourSlotType, int targetInventorySlotIndex)
+    {
+        if (InventoryManager.Instance == null)
+        {
+            Debug.LogWarning("InventoryDropHandler could not find InventoryManager.", gameObject);
+            return;
+        }
+
+        EquipmentInstance targetInventoryItem = InventoryManager.Instance.GetItemAt(targetInventorySlotIndex);
+
+        if (targetInventoryItem == null || targetInventoryItem.equipmentData == null)
+        {
+            EquipmentManager.Instance.UnequipArmourToInventorySlot(armourSlotType, targetInventorySlotIndex);
+        }
+        else
+        {
+            EquipmentManager.Instance.SwapArmourWithInventorySlot(armourSlotType, targetInventorySlotIndex);
+        }
+    }
+
+    private void TryMoveArtifactToInventory(int artifactSlotIndex, int targetInventorySlotIndex)
+    {
+        if (InventoryManager.Instance == null)
+        {
+            Debug.LogWarning("InventoryDropHandler could not find InventoryManager.", gameObject);
+            return;
+        }
+
+        EquipmentInstance targetInventoryItem = InventoryManager.Instance.GetItemAt(targetInventorySlotIndex);
+
+        if (targetInventoryItem == null || targetInventoryItem.equipmentData == null)
+        {
+            EquipmentManager.Instance.UnequipArtifactToInventorySlot(artifactSlotIndex, targetInventorySlotIndex);
+        }
+        else
+        {
+            EquipmentManager.Instance.SwapArtifactWithInventorySlot(artifactSlotIndex, targetInventorySlotIndex);
         }
     }
 }
